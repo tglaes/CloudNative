@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.http.HttpClient;
 
+import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
@@ -19,7 +20,14 @@ public class Main {
 		server = HttpServer.create(new InetSocketAddress(8200), 0);
 		server.createContext("/registration", new RegistrationHandler());
 		server.setExecutor(null);
-
+		server.start();
+		
+		Registration r = new Registration();
+		r.setCountry("USA");
+		r.setEmail("test@htwsaar.de");
+		r.setPassword("geheim");
+		System.out.println(new Gson().toJson(r));
+		
 	}
 
 }
@@ -28,7 +36,5 @@ class RegistrationHandler implements HttpHandler{
 
 	@Override
 	public void handle(HttpExchange arg0) throws IOException {
-		// TODO Auto-generated method stub
-		
 	}
 }

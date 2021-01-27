@@ -19,7 +19,7 @@ public class Main {
 		server = HttpServer.create(new InetSocketAddress(8300), 0);
 		server.createContext("/gateway", new GatewayHandler());
 		server.setExecutor(null);
-
+		server.start();
 	}
 
 }
@@ -28,7 +28,14 @@ class GatewayHandler implements HttpHandler{
 
 	@Override
 	public void handle(HttpExchange arg0) throws IOException {
-		// TODO Auto-generated method stub
 		
+		// /gateway/registration
+		// /gateway/login
+		// /gateway/logout
+		// /gateway/sendMessage
+		// /gateway/getMessages
+		
+		System.out.println(arg0.getHttpContext().getPath());
+		System.out.println(arg0.getRequestURI());
 	}
 }
