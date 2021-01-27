@@ -22,12 +22,6 @@ public class Main {
 		server.createContext("/login", new LoginHandler());
 		server.setExecutor(null);
 		server.start();
-		
-		Login l = new Login();
-		l.setEmail("testmail@htwsaar.de");
-		l.setPassword("pass");
-		System.out.println(new Gson().toJson(l));
-		
 	}
 
 }
@@ -36,11 +30,51 @@ class LoginHandler implements HttpHandler{
 
 	@Override
 	public void handle(HttpExchange t) throws IOException {
-		// TODO Auto-generated method stub
-		String response = "Error";
-		t.sendResponseHeaders(404, response.length());
-		OutputStream os = t.getResponseBody();
-		os.write(response.getBytes());
+		
+		//System.out.println(new String(t.getRequestBody().readAllBytes()));
+		
+		switch (t.getRequestURI().toString()) {
+		case "/login/createnNewLogin": {
+			
+			Login l = new Gson().fromJson(new String(t.getRequestBody().readAllBytes()), Login.class);
+			LoginDatabase.createNewLogin(l);
+			
+			writeResponse(t, "ok", 200);
+			
+			break;
+		}
+		case "/login/checkLogin":{
+			
+			Login l = new Gson().fromJson(new String(t.getRequestBody().readAllBytes()), Login.class);
+			
+			if(l == null) {
+				returnError(t, "No Login data provided");
+			} else {
+				String token = LoginDatabase.createNewSessionToken(l);
+				if(token != null) {
+					writeResponse(t, token, 200);
+				} else {
+					writeResponse(t, "Password or username not correct", 200);
+				}	
+			}	
+			break;
+		}
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + t.getRequestURI().toString());
+		}
+	}
+	
+	public static void writeResponse(HttpExchange request, String body, int statusCode) throws IOException {
+		request.sendResponseHeaders(statusCode, body.length());
+		OutputStream os = request.getResponseBody();
+		os.write(body.getBytes());
+		os.close();
+	}
+	
+	public void returnError(HttpExchange message, String error) throws IOException {
+		message.sendResponseHeaders(404, error.length());
+		OutputStream os = message.getResponseBody();
+		os.write(error.getBytes());
 		os.close();
 	}
 }
