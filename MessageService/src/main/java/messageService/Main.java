@@ -1,8 +1,15 @@
 package messageService;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.InetSocketAddress;
+import java.net.URI;
 import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.http.HttpRequest.BodyPublishers;
+import java.net.http.HttpResponse.BodyHandlers;
+import java.time.Duration;
 
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
@@ -11,53 +18,84 @@ import com.sun.net.httpserver.HttpServer;
 
 public class Main {
 
-	private static HttpClient client;
 	private static HttpServer server;
-	
+
 	public static void main(String[] args) throws IOException {
-		
-		client = HttpClient.newHttpClient();
+
 		server = HttpServer.create(new InetSocketAddress(8100), 0);
 		server.createContext("/message", new MessageHandler());
 		server.setExecutor(null);
 		server.start();
-		
-		Gson g = new Gson();
-		SendMessage sm = new SendMessage();
-		sm.setBody("Hallo wie gehts?");
-		sm.setRecipientEmail("test@test.de");
-		sm.setToken("jawd34md9023q4dnq247q24d23");
-		System.out.println(g.toJson(sm));
-		
-		Message m1 = new Message();
-		m1.setBody("Hello Cloud Native");
-		m1.setRecipientEmail("hallo@test.de");
-		m1.setSenderEmail("sender@sending.com");
-		
-		Message m2 = new Message();
-		m2.setBody("Test test test");
-		m2.setRecipientEmail("hallo@test.de");
-		m2.setSenderEmail("sender2@sending.com");
-		
-		Message m3 = new Message();
-		m3.setBody("1 2 3 four five six");
-		m3.setRecipientEmail("hallo@test.de");
-		m3.setSenderEmail("sender3@sending.com");
-		
-		Message[] messages = new Message[3];
-		messages[0] = m1;
-		messages[1] = m2;
-		messages[2] = m3;
-		System.out.println(g.toJson(messages));	
 	}
-
 }
 
-class MessageHandler implements HttpHandler{
+class MessageHandler implements HttpHandler {
+
+	private static HttpClient client = HttpClient.newHttpClient();
+	private static String loginSericeURL = "http://localhost:8000/login/";
 
 	@Override
-	public void handle(HttpExchange arg0) throws IOException {
-		// TODO Auto-generated method stub
-		
+	public void handle(HttpExchange request) throws IOException {
+		switch (request.getRequestURI().toString()) {
+		case "/message/sendMessage": {
+
+			// Check login
+			
+			HttpResponse<String> response = sendHttpPost(client, loginSericeURL + "/checkToken",
+					new String(request.getRequestBody().readAllBytes()));
+			
+			if(response.body().equals("Token invalid")) {
+				writeResponse(request, response.body(), response.statusCode());
+			} else {
+				// Write the message to the database
+				SendMessage sm = new Gson().fromJson(new String(request.getRequestBody().readAllBytes()), SendMessage.class);
+				if(sm == null) {
+					writeResponse(request, "Message not valid", 200);
+				} else {
+					
+					MessageDatabase.addMessage(new Message(sm.getBody(), sm.getRecipientEmail(), response.body()));					
+					writeResponse(request, "Success", 200);
+				}			
+			}		
+			break;
+		}
+		case "/message/getMessages": {
+			HttpResponse<String> response = sendHttpPost(client, loginSericeURL + "/checkToken",
+					new String(request.getRequestBody().readAllBytes()));
+			if(response.body().equals("Token invalid")) {
+				writeResponse(request, response.body(), response.statusCode());
+			} else {
+				
+				Message[] messages = MessageDatabase.getMessagesForUser(response.body());
+				writeResponse(request, new Gson().toJson(messages), 200);
+			}		
+			break;
+		}
+		default:
+			String response = "Error: unknown path";
+			request.sendResponseHeaders(404, response.length());
+			OutputStream os = request.getResponseBody();
+			os.write(response.getBytes());
+			os.close();
+		}
+	}
+
+	public HttpResponse<String> sendHttpPost(HttpClient client, String url, String body) throws IOException {
+
+		HttpRequest registrationRequest = HttpRequest.newBuilder().uri(URI.create(url)).timeout(Duration.ofMinutes(1))
+				.header("Content-Type", "application/json").POST(BodyPublishers.ofString(body)).build();
+		try {
+			return client.send(registrationRequest, BodyHandlers.ofString());
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public void writeResponse(HttpExchange request, String body, int statusCode) throws IOException {
+		request.sendResponseHeaders(statusCode, body.length());
+		OutputStream os = request.getResponseBody();
+		os.write(body.getBytes());
+		os.close();
 	}
 }

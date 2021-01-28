@@ -3,16 +3,9 @@ package gateway;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
-import java.net.URI;
 import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
-import java.net.http.HttpResponse.BodyHandlers;
-import java.time.Duration;
-import java.util.concurrent.CompletableFuture;
 
-import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
@@ -45,6 +38,8 @@ class GatewayHandler implements HttpHandler {
 	private static HttpClient client = HttpClient.newHttpClient();;
 	private static String registrationServiceURL = "http://localhost:8200/registration";
 	private static String loginSericeURL = "http://localhost:8000/login/";
+	private static String messageService0URL = "http://localhost:8100/message";
+	//private static String messageService1URL = "http://localhost:8101/message";
 	
 	@Override
 	public void handle(HttpExchange request) throws IOException {
@@ -54,23 +49,34 @@ class GatewayHandler implements HttpHandler {
 		switch (request.getRequestURI().toString()) {
 		case "/gateway/registration": {
 
-			HttpResponse<String> response = Util.sendHttpPost(client, registrationServiceURL, new String(request.getRequestBody().readAllBytes()));
+			HttpResponse<String> response = Util.sendHttpPost(client, registrationServiceURL,
+					new String(request.getRequestBody().readAllBytes()));
 			Util.writeResponse(request, response.body(), response.statusCode());
-			
 			break;
 		}
 		case "/gateway/login": {
-			HttpResponse<String> response = Util.sendHttpPost(client, loginSericeURL + "checkLogin", new String(request.getRequestBody().readAllBytes()));
-			Util.writeResponse(request, response.body(), response.statusCode());			
+			HttpResponse<String> response = Util.sendHttpPost(client, loginSericeURL + "checkLogin",
+					new String(request.getRequestBody().readAllBytes()));
+			Util.writeResponse(request, response.body(), response.statusCode());
+			break;
 		}
 		case "/gateway/logout": {
-
+			HttpResponse<String> response = Util.sendHttpPost(client, loginSericeURL + "logout",
+					new String(request.getRequestBody().readAllBytes()));
+			Util.writeResponse(request, response.body(), response.statusCode());
+			break;
 		}
 		case "/gateway/sendMessage": {
-
+			HttpResponse<String> response = Util.sendHttpPost(client, messageService0URL + "sendMessage",
+					new String(request.getRequestBody().readAllBytes()));
+			Util.writeResponse(request, response.body(), response.statusCode());
+			break;
 		}
 		case "/gateway/getMessages": {
-
+			HttpResponse<String> response = Util.sendHttpPost(client, messageService0URL + "getMessages",
+					new String(request.getRequestBody().readAllBytes()));
+			Util.writeResponse(request, response.body(), response.statusCode());
+			break;
 		}
 		default:
 			String response = "Error: unknown path";
@@ -79,8 +85,5 @@ class GatewayHandler implements HttpHandler {
 			os.write(response.getBytes());
 			os.close();
 		}
-
-		// System.out.println(arg0.getHttpContext().getPath());
-		// System.out.println(arg0.getRequestURI());
 	}
 }

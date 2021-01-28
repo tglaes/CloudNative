@@ -6,6 +6,12 @@ public class Message {
 	private String recipientEmail;
 	private String senderEmail;
 	
+	public Message(String body, String recipientEmail, String senderEmail) {
+		this.body = body;
+		this.recipientEmail = recipientEmail;
+		this.senderEmail = senderEmail;
+	}
+	
 	public String getBody() {
 		return body;
 	}

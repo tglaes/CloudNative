@@ -28,4 +28,22 @@ public class LoginDatabase {
 			return "Login not correct!";
 		}
 	}
+	
+	public static String destroySessionToken(String token) {
+		
+		if(tokenMap.containsKey(token)) {
+			tokenMap.remove(token);
+			return "Success";
+		} else {
+			return "Session could not be deleted";
+		}	 
+	}
+	
+	public static String checkToken(String token) {
+		if(tokenMap.containsKey(token)) {
+			return tokenMap.get(token).getEmail();
+		} else {
+			return "Token invalid";
+		}
+	}
 }
