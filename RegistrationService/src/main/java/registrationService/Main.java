@@ -38,10 +38,10 @@ class RegistrationHandler implements HttpHandler {
 			Registration r = new Gson().fromJson(new String(message.getRequestBody().readAllBytes()),
 					Registration.class);
 
-			r = new Registration();
-			r.setCountry("Germny");
-			r.setEmail("test@htwsaar.de");
-			r.setPassword("pass");
+			//r = new Registration();
+			//r.setCountry("Germny");
+			//r.setEmail("test@htwsaar.de");
+			//r.setPassword("pass");
 
 			if (r == null) {
 				returnError(message, "Registration message malformed");
