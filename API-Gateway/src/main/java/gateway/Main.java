@@ -44,11 +44,11 @@ class GatewayHandler implements HttpHandler {
 	@Override
 	public void handle(HttpExchange request) throws IOException {
 
-		System.out.println(request.getRequestURI().toString());
+		System.out.println("URL:" + request.getRequestURI().toString());
+		System.out.println("Body: " + new String(request.getRequestBody().readAllBytes()));
 		
 		switch (request.getRequestURI().toString()) {
 		case "/gateway/registration": {
-
 			HttpResponse<String> response = Util.sendHttpPost(client, registrationServiceURL,
 					new String(request.getRequestBody().readAllBytes()));
 			Util.writeResponse(request, response.body(), response.statusCode());
