@@ -20,6 +20,13 @@
   color: #61dafb;
 }
 
+app-settings{
+  text-align: center;
+  width: 308px;
+  margin-left: 800px;
+  margin-top: 250px;
+}
+
 .card{
   margin-top: 15px;
   margin-left: 15px;
