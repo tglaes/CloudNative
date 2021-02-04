@@ -4,8 +4,8 @@ export function register(user){
     console.log(user);
     return axios.post("http://localhost:8300/gateway/registration", user,
         {headers: {'Access-Control-Allow-Origin':  '*',
-    'Access-Control-Allow-Methods': 'POST',
-                'Content-Type': 'application/json'}
+                        'Access-Control-Allow-Methods': 'POST',
+                        'Content-Type': 'application/json'}
     });
 }
 
