@@ -1,8 +1,9 @@
 import React from "react";
 import './App.css';
-import Login from "./login";
-import {Card, Form, Tab, Tabs} from "react-bootstrap";
-import Register from "./register";
+import {BrowserRouter as Router} from "react-router-dom";
+import Overview from "./overview";
+import Message from "./message";
+import {Route} from "react-router";
 
 class App extends React.Component {
     constructor(props) {
@@ -12,24 +13,21 @@ class App extends React.Component {
 
     render() {
         return (
-            <div>
-                <div className="App">
-                    <Tabs defaultActiveKey="register">
-                        <Tab eventKey="register" title="Registrierung">
-                            <Card style={{width: '18rem'}}>
-                                <Register/>
-                            </Card>
-                        </Tab>
-                        <Tab eventKey="login" title="Login">
-                            <Card style={{width: '18rem'}}>
-                                <Login/>
-                            </Card>
-                        </Tab>
-                    </Tabs>
+                <div>
+                    <Router>
+                        <Route exact path="/" render={(props) => <Overview/>}></Route>
+                        <Route path="/message" render={(props) => <Message/>}></Route>
+                    {/*    <Switch>*/}
+                    {/*        <Route component={<Overview/>}></Route>*/}
+                    {/*        /!*<Route path="message" component={<Message/>}></Route>*!/*/}
+                    {/*    </Switch>*/}
+                    </Router>
+                    {/*<Overview>*/}
+
+                    {/*</Overview>*/}
+                    {/*<Message></Message>*/}
+
                 </div>
-            </div>
-
-
         );
     }
 }
