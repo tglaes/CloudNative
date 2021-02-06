@@ -8,8 +8,17 @@ public class MessageDatabase {
 	private static List<Message> messages = new ArrayList<Message>();
 	
 	public static Message[] getMessagesForUser(String email){
-	
-		return (Message[])messages.stream().filter(x -> x.getRecipientEmail().equals(email)).toArray();	
+		
+		List<Message> resultMessages = new ArrayList<Message>();
+		messages.forEach(x -> {
+			
+			if(x.getRecipientEmail().equals(email)) {
+				resultMessages.add(x);
+			}
+			
+		});
+		
+		return resultMessages.toArray(new Message[resultMessages.size()]);
 	}
 	
 	public static void addMessage(Message m) {

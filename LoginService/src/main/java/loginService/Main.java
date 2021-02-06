@@ -29,6 +29,9 @@ class LoginHandler implements HttpHandler {
 
 		String body = new String(t.getRequestBody().readAllBytes());
 		
+		System.out.println("URI=" + t.getRequestURI().toString());
+		System.out.println("BODY=" + body);
+		
 		switch (t.getRequestURI().toString()) {
 		case "/login/createnNewLogin": {
 

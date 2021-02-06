@@ -1,6 +1,5 @@
 package registrationService;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
@@ -36,6 +35,9 @@ class RegistrationHandler implements HttpHandler {
 		if (message.getRequestMethod().equals("POST")) {
 
 			String body = new String(message.getRequestBody().readAllBytes());
+			
+			System.out.println("URI=" + message.getRequestURI().toString());
+			System.out.println("BODY=" + body);
 			
 			Registration r = new Gson().fromJson(body, Registration.class);
 

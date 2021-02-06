@@ -39,7 +39,7 @@ public class LoginDatabase {
 		}	 
 	}
 	
-	public static String checkToken(String token) {
+	public static String checkToken(String token) {	
 		if(tokenMap.containsKey(token)) {
 			return tokenMap.get(token).getEmail();
 		} else {
