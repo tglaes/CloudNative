@@ -46,7 +46,7 @@ class Register extends React.Component{
                     };
                     fetch('http://localhost:8300/gateway/registration', requestOptions)
                         .then(response => {
-                                console.log(response.data);
+                                console.log(response.headers());
                             }).catch((error) => {
                                 console.log(error);
                             });
