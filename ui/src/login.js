@@ -24,6 +24,21 @@ class Login extends React.Component{
                         console.log(data);
                         window.location = "/message";
 
+
+                        const requestOptions = {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'text/plain' },
+                            body: JSON.stringify({ email: values.email,
+                                password: values.password,
+                                 })
+                        };
+                        fetch('http://localhost:8300/gateway/login', requestOptions)
+                            .then(response => {
+                                console.log(response.data);
+                            }).catch((error) => {
+                            console.log(error);
+                        });
+
                         // login(data).then(response => {
                         //         this.props.history.push({
                         //                             pathname: 'message',

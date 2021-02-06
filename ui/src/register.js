@@ -3,6 +3,7 @@ import "./index.css"
 import {Button, Form} from "react-bootstrap";
 import {Formik} from "formik";
 import {register} from "./requests";
+import axios from "axios";
 
 class Register extends React.Component{
     constructor(props) {
@@ -10,6 +11,17 @@ class Register extends React.Component{
         this.state = {
 
         }
+    }
+
+    componentDidMount() {
+        // // Simple POST request with a JSON body using fetch
+        // const requestOptions = {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'text/plain' },
+        //     body: JSON.stringify({ title: 'React POST Request Example' })
+        // };
+        // fetch('http://localhost:8300/gateway/registration', requestOptions)
+        //     .then(console.log("test"));
     }
 
     render() {
@@ -24,11 +36,20 @@ class Register extends React.Component{
                     };
 
                     console.log(data);
-                    register(data).then(response => {
-                        console.log(response.data);
-                    }).catch((error) => {
-                        console.log(error);
-                    })
+
+                    const requestOptions = {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'text/plain' },
+                        body: JSON.stringify({ email: values.email,
+                            password: values.password,
+                            country: values.country })
+                    };
+                    fetch('http://localhost:8300/gateway/registration', requestOptions)
+                        .then(response => {
+                                console.log(response.data);
+                            }).catch((error) => {
+                                console.log(error);
+                            });
                 }}
                 initialValues={{
                     email: "",
