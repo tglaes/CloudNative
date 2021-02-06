@@ -27,10 +27,12 @@ class LoginHandler implements HttpHandler {
 	@Override
 	public void handle(HttpExchange t) throws IOException {
 
+		String body = new String(t.getRequestBody().readAllBytes());
+		
 		switch (t.getRequestURI().toString()) {
 		case "/login/createnNewLogin": {
 
-			Login l = new Gson().fromJson(new String(t.getRequestBody().readAllBytes()), Login.class);
+			Login l = new Gson().fromJson(body, Login.class);
 			LoginDatabase.createNewLogin(l);
 
 			writeResponse(t, "ok", 200);
@@ -38,8 +40,8 @@ class LoginHandler implements HttpHandler {
 			break;
 		}
 		case "/login/checkLogin": {
-
-			Login l = new Gson().fromJson(new String(t.getRequestBody().readAllBytes()), Login.class);
+			
+			Login l = new Gson().fromJson(body, Login.class);
 
 			if (l == null) {
 				returnError(t, "No Login data provided");
@@ -55,7 +57,7 @@ class LoginHandler implements HttpHandler {
 		}
 		case "/login/logout": {
 
-			String token = new String(t.getRequestBody().readAllBytes());
+			String token = body;
 
 			if(token == null || token.isEmpty()) {
 				writeResponse(t, "Token cannot be null or empty", 200);
@@ -67,7 +69,7 @@ class LoginHandler implements HttpHandler {
 		}
 		case "/login/checkToken": {
 
-			String token = new String(t.getRequestBody().readAllBytes());
+			String token = body;
 
 			if(token == null || token.isEmpty()) {
 				writeResponse(t, "Token cannot be null or empty", 200);

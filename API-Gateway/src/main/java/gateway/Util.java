@@ -1,6 +1,7 @@
 package gateway;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -40,4 +41,17 @@ public class Util {
 		os.write(body.getBytes());
 		os.close();
 	}
+	
+	public static String stringFromInputStream(InputStream is) throws IOException {
+		
+		int c = 0;
+		StringBuilder sb = new StringBuilder();
+		
+		while(is.read() != -1) {
+			sb.append((char) c);
+		}
+		
+		return sb.toString();	
+	}
+	
 }

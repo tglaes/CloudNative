@@ -32,7 +32,7 @@ public class Main {
 class MessageHandler implements HttpHandler {
 
 	private static HttpClient client = HttpClient.newHttpClient();
-	private static String loginSericeURL = "http://localhost:8000/login/";
+	private static String loginSericeURL = "http://localhost:8000/login";
 
 	@Override
 	public void handle(HttpExchange request) throws IOException {
