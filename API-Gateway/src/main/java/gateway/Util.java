@@ -36,6 +36,9 @@ public class Util {
 	}
 	
 	public static void writeResponse(HttpExchange request, String body, int statusCode) throws IOException {
+		
+		body = "{'message':'" + body + "'}";
+		
 		request.sendResponseHeaders(statusCode, body.length());
 		OutputStream os = request.getResponseBody();
 		os.write(body.getBytes());

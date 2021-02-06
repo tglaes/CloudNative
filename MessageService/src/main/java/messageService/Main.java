@@ -32,43 +32,53 @@ public class Main {
 class MessageHandler implements HttpHandler {
 
 	private static HttpClient client = HttpClient.newHttpClient();
-	private static String loginSericeURL = "http://localhost:8000/login";
+	private static String loginSericeURL = "http://localhost:8000/login/";
 
 	@Override
 	public void handle(HttpExchange request) throws IOException {
+
+		String body = new String(request.getRequestBody().readAllBytes());
+
+		System.out.println("URI=" + request.getRequestURI().toString());
+		System.out.println("BODY=" + body);
+
 		switch (request.getRequestURI().toString()) {
 		case "/message/sendMessage": {
 
-			// Check login
-			
-			HttpResponse<String> response = sendHttpPost(client, loginSericeURL + "/checkToken",
-					new String(request.getRequestBody().readAllBytes()));
-			
-			if(response.body().equals("Token invalid")) {
+			SendMessage sm = new Gson().fromJson(body, SendMessage.class);
+
+			if (sm == null) {
+				writeResponse(request, "Message not valid", 200);
+				return;
+			}
+
+			HttpResponse<String> response = sendHttpPost(client, loginSericeURL + "checkToken", sm.getToken());
+
+			if (response.body().equals("Token invalid")) {
 				writeResponse(request, response.body(), response.statusCode());
 			} else {
-				// Write the message to the database
-				SendMessage sm = new Gson().fromJson(new String(request.getRequestBody().readAllBytes()), SendMessage.class);
-				if(sm == null) {
-					writeResponse(request, "Message not valid", 200);
-				} else {
-					
-					MessageDatabase.addMessage(new Message(sm.getBody(), sm.getRecipientEmail(), response.body()));					
-					writeResponse(request, "Success", 200);
-				}			
-			}		
+				MessageDatabase.addMessage(new Message(sm.getBody(), sm.getRecipientEmail(), response.body()));
+				writeResponse(request, "Success", 200);
+			}
 			break;
 		}
 		case "/message/getMessages": {
-			HttpResponse<String> response = sendHttpPost(client, loginSericeURL + "/checkToken",
-					new String(request.getRequestBody().readAllBytes()));
-			if(response.body().equals("Token invalid")) {
+
+			GetMessages gm = new Gson().fromJson(body, GetMessages.class);
+
+			if (gm == null) {
+				writeResponse(request, "Message not valid", 200);
+				return;
+			}
+
+			HttpResponse<String> response = sendHttpPost(client, loginSericeURL + "checkToken", gm.getToken());
+			if (response.body().equals("Token invalid")) {
 				writeResponse(request, response.body(), response.statusCode());
 			} else {
-				
+
 				Message[] messages = MessageDatabase.getMessagesForUser(response.body());
 				writeResponse(request, new Gson().toJson(messages), 200);
-			}		
+			}
 			break;
 		}
 		default:
@@ -80,10 +90,10 @@ class MessageHandler implements HttpHandler {
 		}
 	}
 
-	public HttpResponse<String> sendHttpPost(HttpClient client, String url, String body) throws IOException {
+	public static HttpResponse<String> sendHttpPost(HttpClient client, String url, String body) throws IOException {
 
 		HttpRequest registrationRequest = HttpRequest.newBuilder().uri(URI.create(url)).timeout(Duration.ofMinutes(1))
-				.header("Content-Type", "application/json").POST(BodyPublishers.ofString(body)).build();
+				.header("Content-Type", "plain/text").POST(BodyPublishers.ofString(body)).build();
 		try {
 			return client.send(registrationRequest, BodyHandlers.ofString());
 		} catch (InterruptedException e) {
