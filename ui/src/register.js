@@ -40,13 +40,13 @@ class Register extends React.Component{
                     const requestOptions = {
                         method: 'POST',
                         headers: { 'Content-Type': 'text/plain' },
-                        body: JSON.stringify({ email: values.email,
+                        body: JSON.stringify( { email: values.email,
                             password: values.password,
                             country: values.country })
                     };
                     fetch('http://localhost:8300/gateway/registration', requestOptions)
                         .then(response => {
-                                console.log(response.data);
+                                console.log(response);
                             }).catch((error) => {
                                 console.log(error);
                             });
