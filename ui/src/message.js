@@ -17,7 +17,7 @@ class Message extends React.Component {
             messages: [{
                 body: "Hello Cloud Native",
                 resE: "hallo@test.de",
-                sendE: "sender@sending.com"
+                sendE: "sender@sending.com",
             },
                 {
                     body: "Hello from the other side",
@@ -32,6 +32,8 @@ class Message extends React.Component {
             showMessage: false,
             currentBody: '',
             showNewTemplate: false,
+            recipientEmail: '',
+            senderEmail: '',
         }
     }
 
@@ -43,7 +45,9 @@ class Message extends React.Component {
         this.setState({
             showNewTemplate: false,
             showMessage: true,
-            body: item.body
+            body: item.body,
+            recipientEmail: item.resE,
+            senderEmail: item.sendE,
         })
     }
 
@@ -55,6 +59,9 @@ class Message extends React.Component {
     addEmptyTemplate = () => {
         this.setState({
             showNewTemplate: true,
+            showMessage: false,
+            body: "",
+            senderEmail: "",
         })
     }
 
@@ -65,22 +72,31 @@ class Message extends React.Component {
                 <Formik
                     onSubmit={(values, actions) => {
                         const data = {
-                            recipientEmail: values.recipientEmail,
-                            message: values.message,
+                            // recipientEmail: this.state.recipientEmail,
+                            // senderEmail: this.state.senderEmail === "" ? values.senderEmail : this.state.senderEmail,
+                            recipientEmail: this.state.senderEmail === "" ? values.senderEmail : this.state.senderEmail,
+                            body: values.message,
+                            // token: this.state.token,
                         };
 
                         console.log(data)
 
-                        sendMessage(data).then(response => {
-                            console.log(response.data);
-                        }).catch((error) => {
+                        const requestOptions = {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'text/plain' },
+                            body: JSON.stringify(data)
+                        };
+                        fetch('http://localhost:8300/gateway/message', requestOptions)
+                            .then(response => {
+                                console.log(response);
+                            }).catch((error) => {
                             console.log(error);
-                        })
+                        });
 
                     }}
                     initialValues={{
-                        recipientEmail: "",
-                        massage: "",
+                        senderEmail: this.state.senderEmail,
+                        message: "",
                     }}
                 >
                     {({
@@ -142,13 +158,14 @@ class Message extends React.Component {
                                         <div className="col-7 px-0">
                                         <div className="px-4 py-5 chat-box bg-white">
 
-                                            <Form.Group controlId="recipientEmail">
+                                            <Form.Group controlId="senderEmail">
                                                 <Form.Control
                                                     className="form-control rounded-0 border-0 py-4 bg-light"
                                                     type="text"
                                                     aria-describedby="button-addon2"
                                                     placeholder="Empfänger"
-                                                    value={values.recipientEmail} onChange={handleChange}
+                                                    value={values.senderEmail}
+                                                    onChange={handleChange}
                                                 />
 
                                             </Form.Group>
@@ -199,13 +216,15 @@ class Message extends React.Component {
                                     </div> : <div className="col-7 px-0">
                                             <div className="px-4 py-5 chat-box bg-white">
 
-                                                <Form.Group controlId="recipientEmail">
+                                                <Form.Group controlId="senderEmail">
                                                     <Form.Control
                                                         className="form-control rounded-0 border-0 py-4 bg-light"
                                                         type="text"
                                                         aria-describedby="button-addon2"
                                                         placeholder="Empfänger"
-                                                        value={values.recipientEmail} onChange={handleChange}
+                                                        value={this.state.senderEmail}
+                                                        disabled
+                                                        onChange={handleChange}
                                                     />
 
                                                 </Form.Group>
@@ -215,9 +234,6 @@ class Message extends React.Component {
 
                                                         <div className="media-body">
                                                             <div className="bg-primary rounded py-2 px-3 mb-2">
-                                                                <p className="text-small mb-0 text-white">Apollo
-                                                                    University, Delhi, India
-                                                                    Test</p>
                                                                 <p className="text-small mb-0 text-white">{this.state.body}</p>
                                                             </div>
                                                         </div>
@@ -237,7 +253,8 @@ class Message extends React.Component {
                                                             type="text"
                                                             aria-describedby="button-addon2"
                                                             placeholder="Nachricht schreiben ..."
-                                                            value={values.message} onChange={handleChange}
+                                                            value={values.message}
+                                                            onChange={handleChange}
                                                         />
 
                                                     </Form.Group>
