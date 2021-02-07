@@ -1,6 +1,7 @@
 package messageService;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MessageDatabase {
@@ -22,6 +23,7 @@ public class MessageDatabase {
 	}
 	
 	public static void addMessage(Message m) {
+		m.setMessageTime(new Date());
 		messages.add(m);
 	}
 }
