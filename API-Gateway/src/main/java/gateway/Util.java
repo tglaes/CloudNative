@@ -21,14 +21,14 @@ public class Util {
 	
 	public static HttpResponse<String> sendHttpPost(HttpClient client, String url, String body) throws IOException {
 		
-		HttpRequest registrationRequest = HttpRequest.newBuilder()
+		HttpRequest request = HttpRequest.newBuilder()
 				.uri(URI.create(url))
 				.timeout(Duration.ofMinutes(1))
 				.header("Content-Type", "application/json")
 				.POST(BodyPublishers.ofString(body))
 				.build();
 		try {
-			return client.send(registrationRequest, BodyHandlers.ofString());
+			return client.send(request, BodyHandlers.ofString());
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -38,6 +38,8 @@ public class Util {
 	public static void writeResponse(HttpExchange request, String body, int statusCode) throws IOException {
 		
 		body = "{'message':'" + body + "'}";
+		
+		request.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
 		
 		request.sendResponseHeaders(statusCode, body.length());
 		OutputStream os = request.getResponseBody();
