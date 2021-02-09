@@ -1,17 +1,20 @@
 import React from "react";
 import "./index.css"
 import {Button, Form} from "react-bootstrap";
-import {login} from "./requests";
 import {Formik} from "formik";
+import {withRouter} from 'react-router-dom';
 
 class Login extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
+            token: '',
         }
+
     }
 
     render(){
+
         return (
             <div>
                 <Formik
@@ -22,9 +25,8 @@ class Login extends React.Component{
                         };
 
                         console.log(data);
-                        window.location = "/message";
 
-
+                        let that = this;
                         const requestOptions = {
                             method: 'POST',
                             headers: { 'Content-Type': 'text/plain' },
@@ -33,21 +35,17 @@ class Login extends React.Component{
                                  })
                         };
                         fetch('http://localhost:8300/gateway/login', requestOptions)
-                            .then(response => {
-                                console.log(response.data);
-                            }).catch((error) => {
+                            .then(response =>  response.json().then((text) =>{
+                                    that.setState({ token: text.message });
+                                   that.props.history.push({
+                                       pathname: '/message',
+                                       state: { token: text.message }
+                                   })
+                            })
+                            )
+                            .catch((error) => {
                             console.log(error);
                         });
-
-                        // login(data).then(response => {
-                        //         this.props.history.push({
-                        //                             pathname: 'message',
-                        //                             state: {token: response.data.token}
-                        //                         })
-                        //     console.log(response.data);
-                        // }).catch((error) => {
-                        //     console.log(error);
-                        // })
                     }}
                     initialValues={{
                         email: "",
@@ -88,4 +86,4 @@ class Login extends React.Component{
 
 };
 
-export default Login;
+export default withRouter(Login);
