@@ -5,15 +5,15 @@ import SendIcon from '@material-ui/icons/Send';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import AddIcon from '@material-ui/icons/Add';
-import {sendMessage} from "./requests";
-import {Button, Form, ListGroup} from "react-bootstrap";
+import {Form, ListGroup} from "react-bootstrap";
+import {withRouter} from 'react-router-dom'
 import {Link} from "react-router-dom";
 
 class Message extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            //token: this.props.location.state.token,
+            token: this.props.location.state.token,
             messages: [{
                 body: "Hello Cloud Native",
                 resE: "hallo@test.de",
@@ -38,6 +38,22 @@ class Message extends React.Component {
     }
 
     componentDidMount() {
+        console.log(this.state.token);
+        this.getMessage();
+    }
+
+    getMessage(){
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain' },
+            body: JSON.stringify({token: this.state.token})
+        };
+        fetch('http://localhost:8300/gateway/getMessages', requestOptions)
+            .then(response => {
+                console.log(response);
+            }).catch((error) => {
+            console.log(error);
+        });
     }
 
     showMessageItem(item) {
@@ -294,4 +310,4 @@ class Message extends React.Component {
     }
 }
 
-export default Message;
+export default withRouter(Message);
