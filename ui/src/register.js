@@ -2,6 +2,7 @@ import React from "react";
 import "./index.css"
 import {Button, Form} from "react-bootstrap";
 import {Formik} from "formik";
+import {registrationSuccess} from "./notifications";
 
 class Register extends React.Component{
     constructor(props) {
@@ -25,6 +26,7 @@ class Register extends React.Component{
                     };
                     fetch('http://localhost:8300/gateway/registration', requestOptions)
                         .then(response => {
+                            registrationSuccess();
                                 console.log(response);
                             }).catch((error) => {
                                 console.log(error);
