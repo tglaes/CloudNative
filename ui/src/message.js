@@ -8,27 +8,29 @@ import AddIcon from '@material-ui/icons/Add';
 import {Form, ListGroup} from "react-bootstrap";
 import {withRouter} from 'react-router-dom'
 import {Link} from "react-router-dom";
+import {sendMessage} from "./notifications";
 
 class Message extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             token: this.props.location.state.token,
-            messages: [{
-                body: "Hello Cloud Native",
-                resE: "hallo@test.de",
-                sendE: "sender@sending.com",
-            },
-                {
-                    body: "Hello from the other side",
-                    resE: "hallo@test.de",
-                    sendE: "senderTest@sending.com"
-                },
-                {
-                    body: "Hello 3456",
-                    resE: "hallo@test.de",
-                    sendE: "senderTest123@sending.com"
-                }],
+            // messages: [{
+            //     body: "Hello Cloud Native",
+            //     resE: "hallo@test.de",
+            //     sendE: "sender@sending.com",
+            // },
+            //     {
+            //         body: "Hello from the other side",
+            //         resE: "hallo@test.de",
+            //         sendE: "senderTest@sending.com"
+            //     },
+            //     {
+            //         body: "Hello 3456",
+            //         resE: "hallo@test.de",
+            //         sendE: "senderTest123@sending.com"
+            //     }],
+            messages: {},
             showMessage: false,
             currentBody: '',
             showNewTemplate: false,
@@ -43,15 +45,19 @@ class Message extends React.Component {
     }
 
     getMessage(){
+        let that = this;
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'text/plain' },
             body: JSON.stringify({token: this.state.token})
         };
         fetch('http://localhost:8300/gateway/getMessages', requestOptions)
-            .then(response => {
-                console.log(response);
-            }).catch((error) => {
+            .then(response =>  response.json().then((text) =>{
+                    that.setState({ messages: text.message })
+                console.log(this.state.messages);
+                })
+
+            ).catch((error) => {
             console.log(error);
         });
     }
@@ -82,6 +88,7 @@ class Message extends React.Component {
     }
 
     render() {
+        console.log(this.state.messages)
         // https://bootstrapious.com/p/bootstrap-chat
         return (
             <div className="Message">
@@ -92,7 +99,7 @@ class Message extends React.Component {
                             // senderEmail: this.state.senderEmail === "" ? values.senderEmail : this.state.senderEmail,
                             recipientEmail: this.state.senderEmail === "" ? values.senderEmail : this.state.senderEmail,
                             body: values.message,
-                            // token: this.state.token,
+                            token: this.state.token,
                         };
 
                         console.log(data)
@@ -102,9 +109,10 @@ class Message extends React.Component {
                             headers: { 'Content-Type': 'text/plain' },
                             body: JSON.stringify(data)
                         };
-                        fetch('http://localhost:8300/gateway/message', requestOptions)
+                        fetch('http://localhost:8300/gateway/sendMessage', requestOptions)
                             .then(response => {
                                 console.log(response);
+                                sendMessage();
                             }).catch((error) => {
                             console.log(error);
                         });
@@ -143,12 +151,12 @@ class Message extends React.Component {
                                             <div className="messages-box">
                                                 <div className="list-group rounded-0">
                                                     <ListGroup>
-                                                        {this.state.messages.map(item =>
-                                                            <ListGroup.Item onClick={(e =>
-                                                                this.showMessageItem(item))
-                                                            }> <AccountCircleIcon fontSize="large"/>{item.sendE}
-                                                            </ListGroup.Item>
-                                                        )}
+                                                        {/*{this.state.messages.length !== 0 ? this.state.messages.map(item =>*/}
+                                                        {/*    <ListGroup.Item onClick={(e =>*/}
+                                                        {/*        this.showMessageItem(item))*/}
+                                                        {/*    }> <AccountCircleIcon fontSize="large"/>{item.sendE}*/}
+                                                        {/*    </ListGroup.Item>*/}
+                                                        {/*) : null}*/}
                                                     </ListGroup>
 
                                                     {/*<a className="list-group-item list-group-item-action active text-white rounded-0">*/}

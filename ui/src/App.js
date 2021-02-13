@@ -4,6 +4,8 @@ import {BrowserRouter as Router} from "react-router-dom";
 import Overview from "./overview";
 import Message from "./message";
 import {Route} from "react-router";
+import ReactNotification from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css'
 
 class App extends React.Component {
     constructor(props) {
@@ -14,6 +16,7 @@ class App extends React.Component {
     render() {
         return (
                 <div>
+                    <ReactNotification/>
                     <Router>
                         <Route exact path="/" render={(props) => <Overview/>}></Route>
                         <Route path="/message" render={(props) => <Message/>}></Route>
