@@ -37,7 +37,11 @@ public class Util {
 	
 	public static void writeResponse(HttpExchange request, String body, int statusCode) throws IOException {
 		
-		body = "{\"message\":\"" + body + "\"}";
+		if(body.startsWith("[")) {
+			body = "{\"message\":" + body + "}";
+		} else {
+			body = "{\"message\":\"" + body + "\"}";
+		}
 		
 		request.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
 		
