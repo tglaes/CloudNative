@@ -45,14 +45,55 @@ Definition, kurz: Eigenschaften anhand von Bild
 gegenüber virtualisierung
 kurz: Definition, Vergleich/Abgrenzung anhand von Bild
 \section{Eigenschaften}
-Skalierbarkeit/Elastizität
-Infrastucture is fluid
-Updates und Tests
-Sicherheit
-Globale Ebene
+Als nächstes betrachten wir einige typischen Eigenschaften von Cloud-Native Architekturen. Im nächsten Abschnitt gehen wir dann darauf ein aus welchen Design Prinzipien hervorgehen.
+
+1.) Globale Ebene
+Cloud-Native Architekturen sind oft für eine globale Ebene ausgelegt. Das impliziert z.B. das Daten und Dienste mehrfach deployed und Daten von verschiedenen Quellen synchronisiert werden müssen.
+
+2.) Skalierbarkeit
+Die entstehenden Architekturen sind skalierbar und können eine sehr große Menge von Benutzern unterstützen. Dies ist besonders in Kombination mit der globalen Ebene, wenn man Sychronisation und Konsistenz betrachtet, eine große Herausforderung.
+
+3.) "Built on the assumption that infrastructure is fluid and failure is constant"
+Die Annahme "infrastructure is fluid" bedeutet, dass die unterliegenden Strukturen (Hardware) der nicht konstant sind. So können z.B. Recheneinheiten (CPUs) hinzukommen oder wegfallen. Diese Annahme resultiert aus der Verwendung von Cloud Technologien und bildet die Basis für das Entwerfen von skalierbaren Architekturen.
+Die zweite Annahme, dass Fehler konstant auftreten, ergibt sich ebenfalls aus der Verwendung von Cloud Technologien, denn wenn eine große Anzahl von Hardwarekomponenten verwendet wird steigt die Wahrscheinlichkeit von einem Ausfall. Die Architektur muss also die Möglichkeit von Hardwarefehlern miteinbeziehen. Anders kann man dies auch Wiederstandsfähigkeit bezeichnen.
+
+4.) Verbesserungen und Tests verlaufen unscheinbar
+Die Architekturen sind so entworfen, dass Systeme, ohne Verlust von Verfügbarkeit, geupdatet und getestet werden können.
+
+5.) Sicherheit
+Sicherheit spielt eine wichtige Rolle in Cloud-Native Architekturen. Die meisten Systeme bestehen  aus vielen kleinen Teilen, für welche Zugriff auf andere Teile und Autorisierung/Authentifizierung von Benutzern geregelt werden muss.
+
 \section{Design Prinzipien}
-twelve factor app
+Google ist einer der großen Vertreter, wenn es um Cloud Technologien geht. Mit einer abgewandelten Version der Twelve-Factor-App hat Google eine Liste von Design Prinzipien erstellt, die dabei helfen die Eigenschaften von Cloud-Native Architekturen realisieren. Anzumerken ist, dass die Twelve-Factor-App Prinzipien nicht nur für Cloud-Native Applikationen sind und auch für andere Zwecke verwendet werden kann.
+
+1.) Codebase
+2.) Dependencies
+3.) Configuration
+4.) Backing services
+5.) Build, release, run
+6.) Processes
+7.) Port Binding
+8.) Concurrency
+9.) Disposability
+10.) Environment parity
+11.) Logs
+12.) Admin processes
+
 \section{Vor- und Nachteile}
-die von der Powerpoint
+In diesem Abschnitt nennen und erklären wir einige Vor- und Nachteile von Cloud-Native Architekturen. Wir beginnen mit den Vorteilen.
+
+1. Skalierbarkeit/Elastizität
+2. Zuverlässigkeit/Wiederstandsfähigkeit
+3. Änderbarkeit
+4. Übertragbarkeit
+5. Erweiterbarkeit
+6. CNCF
+
+Noch was schreiben dann nachteile
+
+1. Komplexität
+2. Neuer Ansatz/Technologie
+
+
 \section{Einsatzgebiete}
-vielleicht in einleitung
+Stream Netflix, Google, Facebook
