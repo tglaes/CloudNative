@@ -20,16 +20,7 @@ class App extends React.Component {
                     <Router>
                         <Route exact path="/" render={(props) => <Overview/>}></Route>
                         <Route path="/message" render={(props) => <Message/>}></Route>
-                    {/*    <Switch>*/}
-                    {/*        <Route component={<Overview/>}></Route>*/}
-                    {/*        /!*<Route path="message" component={<Message/>}></Route>*!/*/}
-                    {/*    </Switch>*/}
                     </Router>
-                    {/*<Overview>*/}
-
-                    {/*</Overview>*/}
-                    {/*<Message></Message>*/}
-
                 </div>
         );
     }
