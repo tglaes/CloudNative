@@ -27,7 +27,7 @@ Das System muss so entworfen werden, dass weitere Komponenten (z.B. Hochladen vo
 Ein Benutzer kann sich mit seiner E-Mail Adresse und einem Passwort im System registieren.
 
 2. Ein- und Ausloggen
-Ein Benutzer kann sich mit seiner E-Mail Adresse und seinem Passwort im System anmelden und dann die Funkionen nutzen bis er sich abmeldet.
+Ein Benutzer kann sich mit seiner E-Mail Adresse und seinem Passwort im System anmelden und danach die Funkionen nutzen bis er sich abmeldet.
 
 3. Nachrichten schreiben/lesen
 Ein Benutzer kann Nachrichten an andere Benutzer senden und Nachrichten, die an ihn gesendet worden sind, abrufen.
@@ -40,6 +40,18 @@ Ein Benutzer kann Nachrichten an andere Benutzer senden und Nachrichten, die an 
 \end{figure}
 
 \section{Architekturentwurf}
+\subsection{Microservices}
+Die Architektur basiert auf Microservices, die einem Client, über ein API-Gateway, ihre Funktionen zur Verfügung stellen. Die Aufteilung der Microservies ergibt sich aus Annahme, dass die Funkionalitäten, die sie bereitstellen unterschiedlich oft genutzt werden: Anzahl der Registrierungen < Anzahl der Logins/Logout < Anzahl der geschriebenen Nachrichten.
+
+jeder service eigene datenbank
+
+\subsection{API-Gateway}
+load balancing
+schutz vor ddos
+
+\subsection{Kommunikation}
+
+\subsection{Client}
 
 \begin{figure}[bth] 
 	\centering
@@ -54,5 +66,12 @@ Ein Benutzer kann Nachrichten an andere Benutzer senden und Nachrichten, die an 
 \end{figure}
 
 \section{Implementierung des Prototyps}
+java
+react
+http
+datenbank
+stove pipe
+einzelne programme die individuell gestartet werden können
+
 auch genutzte Technologien aufzeigen
 
