@@ -30,17 +30,56 @@ TODO wichtigsten punkte nennen
 definition
 warum braucht man das im cloud native bereich
 Eigenschaften, Vorteile
-- um diese microservices zu verwalten werden ...
+- um diese microservices zu verwalten werden ...\\
+
+- Microservices sind in Cloud Native Systemen ein beliebter Architekturstil \\
+- Software aus kleinen Services bzw. Module, die unabhängig von einander sind\\
+- Service kann unabhängig von anderen Services entwickelt und bereitgestellt	    werden, ohne die Funktionsfähigkeit anderer Services zu beeinträchtigen\\
+- Eigenständigkeit: besitzt jede Komponentenservice seinen eigenen Code sowie seine eigene Implementierung\\
+- jede einzelne Komponente ist für eine Reihe von Funktionen spezialisiert fokussiert sich auf die Lösung eines bestimmten Problems\\
+- Wenn ein einzelner Service z.B. hinsichtlich Code zu komplex wird kann er in kleinere Services unterteilt werden\\
+- Services kommunizieren über definierte APIs (application programming interface)\\
+- Durch die unabhängigen Services kann jeder einzelne Service der Anwendung einfach nach Bedarf skaliert werden\\
+
+-Flexibilität\\
+-kleine Codebasis\\
+-Fehlerisolation\\
+-einfache Bereitstellung\\
 \section{Container}
 definition
 warum braucht man das im cloud native bereich
 Eigenschaften, Vorteile
- Docker, Kubernetes
+ Docker, Kubernetes\\
+
+- Standard-Software-Einheit, die den Code und seine Abhängigkeiten verpackt
+ -> Anwendung schnell und zuverlässig von einer Umgebung zur anderen ausgeführt werden kann \\
+- Bieten schlanke und unveränderliche Infrastruktur für die Paketierung und Bereitstellung von Anwendungen\\
+- Cloud native Anwendungen nutzen Container für ein einheitliches Betriebssystem, denn durch den geringen Verwaltungsaufwand und die hohe Dichte können viele Container auf demselben virtuellen Computer gehostet werden\\
+
+Vorteile: \\
+- Weniger Speicherplatz: Virtualisierung auf Betriebssystemebene, mehrere Container direkt auf dem Kernel des Betriebssystems ausgeführt werden -> starten schneller\\
+- Isolation: laufen von anderen Anwendungen isoliert\\
+- Überall ausführbar/Portabilität: da die Softwarepakete alle Elemente enthalten, die zur Ausführung in beliebten Umgebungen erforderlich sind\\
+- Schnelle Skalierbarkeit: können schnell gestartet und angehalten werden -> Ressourcen hoch- und herunterskaliert werden können\\
+
+Docker: Beliebtes Open-Source-Containerformat zur Automatisierung der Bereitstellung von Anwendungen die z.B. in der Cloud ausgeführt werden können\\
+
+Kubernetes: Open-Source-Orchestrierungssystem zur Automatisierung der Verwaltung, Platzierung, Skalierung und des Routings von Containern\\
+
 \section{Abgrenzungen}
 gegenüber monolith
-Definition, kurz: Eigenschaften anhand von Bild
-gegenüber virtualisierung
-kurz: Definition, Vergleich/Abgrenzung anhand von Bild
+Definition, kurz: Eigenschaften anhand von Bild\\
+
+- gesamte Architektur muss skaliert werden, wenn in einem Prozess ein Fehler auftritt\\
+- Hinzufügen und Verbessern von Funktionen mit zunehmender Codebasis komplexer
+ -> erschwert Umsetzung neuer Konzepte\\
+- Erhöhtes Risiko der Anwendungsverfügbarkeit -> viele Abhängige und eng miteinander verbundene Prozesse -> einzelner Prozessausfall erhöht\\
+
+gegenüber virtualisierung\\
+kurz: Definition, Vergleich/Abgrenzung anhand von Bild\\
+
+Virtualisierung der gesamten Hardware bzw. Abstraktion der physischen Hardware, die einen Server in viele Server wandelt\\
+
 \section{Eigenschaften}
 Als nächstes betrachten wir einige typischen Eigenschaften von Cloud-Native Architekturen. Im nächsten Abschnitt gehen wir dann darauf ein aus welchen Design Prinzipien hervorgehen.
 
