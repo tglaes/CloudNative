@@ -93,7 +93,7 @@ Die entstehenden Architekturen sind skalierbar und können eine sehr große Meng
 Die Annahme "infrastructure is fluid" bedeutet, dass die unterliegenden Strukturen (Hardware) der nicht konstant sind. So können z.B. Recheneinheiten (CPUs) hinzukommen oder wegfallen. Diese Annahme resultiert aus der Verwendung von Cloud Technologien und bildet die Basis für das Entwerfen von skalierbaren Architekturen.
 Die zweite Annahme, dass Fehler konstant auftreten, ergibt sich ebenfalls aus der Verwendung von Cloud Technologien, denn wenn eine große Anzahl von Hardwarekomponenten verwendet wird steigt die Wahrscheinlichkeit von einem Ausfall. Die Architektur muss also die Möglichkeit von Hardwarefehlern miteinbeziehen. Anders kann man dies auch Wiederstandsfähigkeit bezeichnen.
 
-4.) Verbesserungen und Tests verlaufen unscheinbar
+4.) Updates und Tests verlaufen unscheinbar
 Die Architekturen sind so entworfen, dass Systeme, ohne Verlust von Verfügbarkeit, geupdatet und getestet werden können.
 
 5.) Sicherheit
@@ -102,8 +102,7 @@ Sicherheit spielt eine wichtige Rolle in Cloud-Native Architekturen. Die meisten
 \section{Design Prinzipien}
 Google ist einer der großen Vertreter, wenn es um Cloud Technologien geht. Mit einer abgewandelten Version der Twelve-Factor-App hat Google eine Liste von Design Prinzipien erstellt, die dabei helfen die Eigenschaften von Cloud-Native Architekturen zu realisieren. Anzumerken ist, dass die Twelve-Factor-App Prinzipien nicht nur für Cloud-Native Applikationen sind, sondern auch für andere Zwecke verwendet werden können.
 
-1.) Codebase
-2.) Dependencies
+
 3.) Configuration
 4.) Backing services
 5.) Build, release, run
@@ -119,16 +118,28 @@ Google ist einer der großen Vertreter, wenn es um Cloud Technologien geht. Mit 
 In diesem Abschnitt nennen und erklären wir einige Vor- und Nachteile von Cloud-Native Architekturen. Wir beginnen mit den Vorteilen.
 
 1. Skalierbarkeit/Elastizität
-2. Zuverlässigkeit/Wiederstandsfähigkeit
-3. Änderbarkeit
-4. Übertragbarkeit
-5. Erweiterbarkeit
-6. CNCF
+Aus der Kombination von lose gekoppelten Komponenten und Cloud-Infrastruktur entstehen effektiv skalierbare Architekturen, denn die Komponenten können individuell hoch und runterskaliert werden. Vorraussetzung ist, dass die einzelnen Komponenten unabhängig voneinander und zustandslos sind.
 
-Noch was schreiben dann nachteile
+2. Zuverlässigkeit/Wiederstandsfähigkeit
+Cloud-Native Architekturen sind robust gegen Ausfälle der unterliegenden Strukturen. Komponenten werden überwacht und bei Bedarf neu gestartet.
+
+3. Änderbarkeit/Wartbarkeit
+Da Komponenten weitesgehend voneinander unabhängig sind, können leichter Änderungen gemacht werden, ohne andere Komponenten auch ändern zu müssen.
+
+4. Übertragbarkeit
+Durch die Verwendung von Containern und CI/CD Pipelines ist es möglich die Systeme in andere Umgebungen zu installieren. Container ermöglichen dabei eine Uniforme Umgebung für die Komponenten.
+
+5. Cloud-Native Computing Foundation
+Die CNCF ist eine Organisation, die die Entwicklung im Cloud-Native Bereich unterstützt. Sie ist ein zentraler Punkt für Informationen zu Best Practices, Standards, Open-Source Projekte und Neuigkeiten im Bereich Cloud Native.
+
+Die Liste der Nachteile ist zwar kurz, jedoch sind sie hoch zu gewichten.
 
 1. Komplexität
+
+
 2. Neuer Ansatz/Technologie
+- wenig fachliteratur
+- wenig erfahrene entwickler
 
 
 \section{Einsatzgebiete}
