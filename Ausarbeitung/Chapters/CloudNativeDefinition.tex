@@ -27,29 +27,28 @@ TODO wichtigsten punkte nennen
 
 
 \section{Microservices}
-definition
+TODO definition
 warum braucht man das im cloud native bereich
 Eigenschaften, Vorteile
-- um diese microservices zu verwalten werden ...\\
+- um diese microservices zu verwalten werden ... TODO\\
+Microservices sind in Cloud Native Systemen zum Erstellen von Anwendungen ein beliebter Architekturstil. Bei dieser Architektur besteht die Software aus kleinen, unabhängigen Services bzw. Modulen, die über definierte APIs (application programming interface) kommunizieren. Jeder Service kann unabhängig von anderen Services entwickelt und bereitgestellt werden, ohne die Funktionalität anderer Services zu beeinträchtigen. Den Aufbau der Microservice-Architektur sowie die Darstellung der einzelnen unabhängigen Services sind in Abbildung \ref{micro} zu sehen.\\
+\begin{figure}[bth] 
+	\centering
+	\includegraphics[width=0.6\textwidth]{Graphics/Microservice.png}
+	\caption{Aufbau einer Microservice-Architektur}
+	\label{micro}
+\end{figure}\\
+Durch die Eigenständigkeit besitzt jeder Komponentenservice seinen eigenen Code sowie seine eigene Implementierung. Jede einzelne Komponente ist auf eine Reihe von Funktionen spezialisiert, sodass sie sich auf die Lösung eines bestimmten Problems fokussiert. Wenn ein einzelner Service (z.B. hinsichtlich des Codes) zu komplex wird, kann er in kleinere Services unterteilt werden.\\
+In Cloud Native Systemen sowie in der Microservice-Architektur ist die Skalierung ein wichtiger Bestandteil. Durch die Existenz der einzelnen Services können diese je nach Nachfrage unabhängig voneinander skaliert werden. Dadurch können Subsysteme, die mehr Ressourcen benötigen aufskaliert werden, ohne die gesamte Anwendung aufzuskalieren.\\
+Eine weitere Eigenschaft ist die Flexibilität. Durch die Unabhängigkeit der einzelnen Services wird auch deren Verwaltung vereinfacht. Bei einer Erweiterung sowie Fehlerbehebung der Anwendung muss nur der entsprechende Service verändert werden. Dies führt dazu, dass nicht die gesamte Anwendung erneut bereitgestellt werden muss.\\
+Durch die einfache Bereitstellung können z.B. neue Konzepte ausprobiert und auch schnell wieder rückgängig gemacht werden. Auf Grund der möglichen Experimente entstehen niedrige Ausfallkosten, die Aktualisierung des Codes wird erleichtert und vereinfacht das Hinzufügen neuer Funktionen.
+\\
 
-- Microservices sind in Cloud Native Systemen ein beliebter Architekturstil \\
-- Software aus kleinen Services bzw. Module, die unabhängig von einander sind\\
-- Service kann unabhängig von anderen Services entwickelt und bereitgestellt	    werden, ohne die Funktionsfähigkeit anderer Services zu beeinträchtigen\\
-- Eigenständigkeit: besitzt jede Komponentenservice seinen eigenen Code sowie seine eigene Implementierung\\
-- jede einzelne Komponente ist für eine Reihe von Funktionen spezialisiert fokussiert sich auf die Lösung eines bestimmten Problems\\
-- Wenn ein einzelner Service z.B. hinsichtlich Code zu komplex wird kann er in kleinere Services unterteilt werden\\
-- Services kommunizieren über definierte APIs (application programming interface)\\
-- Durch die unabhängigen Services kann jeder einzelne Service der Anwendung einfach nach Bedarf skaliert werden\\
-
--Flexibilität\\
--kleine Codebasis\\
--Fehlerisolation\\
--einfache Bereitstellung\\
 \section{Container}
 definition
 warum braucht man das im cloud native bereich
 Eigenschaften, Vorteile
- Docker, Kubernetes\\
+Docker, Kubernetes\\
 
 - Standard-Software-Einheit, die den Code und seine Abhängigkeiten verpackt
  -> Anwendung schnell und zuverlässig von einer Umgebung zur anderen ausgeführt werden kann \\
