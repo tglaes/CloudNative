@@ -2,10 +2,10 @@
 % 	   Fallbeispiel     		 =
 %=========================================
 \chapter{Fallbeispiel}
-In diesem Kapitel stellen wir, eine anhand eines selbst ausgedachten Anwendungsfalls, eine Cloud-Native Architektur vor, die wir prototypisch implementiert haben.
+In diesem Kapitel stellen wir, eine anhand eines selbst ausgedachten Anwendungsfalls, Cloud-Native Architektur vor, die wir prototypisch implementiert haben.
 
 \section{Beschreibung}
-In unserem Beispiel haben wir einen Nachrichtendienst (ChatApp) entworfen. Benutzer können sich registieren, anmelden und Nachrichten an andere Benutzer senden. 
+Im Rahmen des Beispiels, haben wir eine Cloud-Native Architekturn für ein Chatprogramm (ChatApp) entworfen. Die Applikation soll drei Funktionen besitzen. Benutzer sollen sich registrieren können, Benutzer sollen sich ein-und ausloggen können und Benutzer sollen Nachrichten an andere Benutzer schreiben können. Im folgenden sind alle funktionalen und nichtfunktionalen Anforderungen aufgeführt.
 
 
 \section{Anforderungen}
@@ -20,7 +20,7 @@ Das System muss zu jeder Zeit verfügbar sein.
 Das System muss Berechtigungen überprüfen können (z.B. darf Benutzer X die Nachrichten lesen) und das System sollte sich gegen übliche Cyberangriffe (z.B. DDoS) schützen können.
 
 4. Änderbarkeit/Erweiterbarkeit
-Das System muss so entworfen werden, dass weitere Komponenten (z.B. Hochladen von Bildern und Videos) einfach hinzugefügt werden können.
+Das System muss es zulassen, dass weitere Komponenten (z.B. Hochladen von Bildern und Videos) einfach hinzugefügt werden können.
 
 \subsection{Funktionale Anforderungen}
 1. Registierung
@@ -33,6 +33,8 @@ Ein Benutzer kann sich mit seiner E-Mail Adresse und seinem Passwort im System a
 Ein Benutzer kann Nachrichten an andere Benutzer senden und Nachrichten, die an ihn gesendet worden sind, abrufen.
 
 
+Im nächsten Abschnitt stellen wir die von uns entworfene Architektur vor und erläutern die wichtigsten Merkmale. 
+
 \begin{figure}[bth] 
 	\centering
 	\includegraphics[width=0.6\textwidth]{Graphics/Usecase-Diagramm.png}
@@ -40,18 +42,26 @@ Ein Benutzer kann Nachrichten an andere Benutzer senden und Nachrichten, die an 
 \end{figure}
 
 \section{Architekturentwurf}
-\subsection{Microservices}
-Die Architektur basiert auf Microservices, die einem Client, über ein API-Gateway, ihre Funktionen zur Verfügung stellen. Die Aufteilung der Microservies ergibt sich aus Annahme, dass die Funkionalitäten, die sie bereitstellen unterschiedlich oft genutzt werden: Anzahl der Registrierungen < Anzahl der Logins/Logout < Anzahl der geschriebenen Nachrichten.
 
+\section{Übersicht}
+Wie in Abbildung xx zu sehen ist besteht die Architektur aus einem Client mit graphischer Oberfläche (UI) einem API-Gateway, das alle Anfragen von Clienten empfängt und drei Microservices mit je einer eigenen Datenbank, die die Hautpfunktionalitäten des Systems implementieren.
+
+\subsection{Microservices}
+Jede Funktion aus den Anforderungen korrespondiert mit einem Microservice. Die Aufteilung der Microservices ergibt sich aus der Annahme, dass die Funkionalitäten, die sie bereitstellen unterschiedlich oft genutzt werden: Anzahl der Registrierungen < Anzahl Login/Logout < Anzahl der geschriebenen Nachrichten/Abruf von Nachrichten). Dadurch kann jede Funktion/Microservice individuell hoch- oder runterskaliert werden ohne unnütze Resourcen zu verschwenden.
+
+verfügbarkeit
+ändrebarkeit
 jeder service eigene datenbank
 
-\subsection{API-Gateway}
-load balancing
-schutz vor ddos
+kommunikation
 
-\subsection{Kommunikation}
+\subsection{API-Gateway}
+Das API-Gateway schottet die Microservices ab. Die Abschottung hat mehrere Vorteile. Sicherheitsrelevante Aspekte wie z.B. DDOS-Protection oder der Schutz vor unbefugtem Zugriff (von Adressen, die nicht zum Client gehören) können auf das API-Gateway verlagert werden und müssen daher nicht in jedem Microservice implementiert werden.
+Des Weiteren erfüllt das API-Gateway die Rolle eines Load-Balancers, sodass eingehende Anfragen auf Microservices verteilt werden können.
 
 \subsection{Client}
+Mithilfe des Clients können Anfragen an das System, genauer gesagt das API-Gateway, gesendet werden. Er enthält keine Funktionalitäten und dient lediglich zum Abrufen und Darstellen von Inhalten.
+
 
 \begin{figure}[bth] 
 	\centering
