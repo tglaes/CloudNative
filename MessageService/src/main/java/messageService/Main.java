@@ -1,7 +1,12 @@
 package messageService;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.Writer;
 import java.net.InetSocketAddress;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -10,6 +15,10 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
@@ -20,9 +29,10 @@ public class Main {
 
 	private static HttpServer server;
 
-	public static void main(String[] args) throws IOException {
-
-		server = HttpServer.create(new InetSocketAddress(8100), 0);
+	public static void main(String[] args) throws IOException {	
+		int portOffset = Integer.parseInt(args[0]);
+		
+		server = HttpServer.create(new InetSocketAddress(8100 + portOffset), 0);
 		server.createContext("/message", new MessageHandler());
 		server.setExecutor(null);
 		server.start();

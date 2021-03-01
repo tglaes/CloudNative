@@ -36,48 +36,71 @@ class GatewayHandler implements HttpHandler {
 	private static String registrationServiceURL = "http://localhost:8200/registration";
 	private static String loginSericeURL = "http://localhost:8000/login/";
 	private static String messageService0URL = "http://localhost:8100/message/";
-	// private static String messageService1URL = "http://localhost:8101/message";
+	private static String messageService1URL = "http://localhost:8101/message/";
 
+	private static boolean takeMessageService1 = true;
+	
 	@Override
 	public void handle(HttpExchange request) throws IOException {
 
-		System.out.println("URL:" + request.getRequestURI().toString());
-		String body = new String(request.getRequestBody().readAllBytes());
-		System.out.println("Body: " + body);
+		try {
+			System.out.println("URL:" + request.getRequestURI().toString());
+			String body = new String(request.getRequestBody().readAllBytes());
+			System.out.println("Body: " + body);
 
-		switch (request.getRequestURI().toString()) {
-		case "/gateway/registration": {
+			switch (request.getRequestURI().toString()) {
+			case "/gateway/registration": {
 
-			HttpResponse<String> response = Util.sendHttpPost(client, registrationServiceURL, body);
-			Util.writeResponse(request, response.body(), response.statusCode());
-			break;
+				HttpResponse<String> response = Util.sendHttpPost(client, registrationServiceURL, body);
+				Util.writeResponse(request, response.body(), response.statusCode());
+				break;
+			}
+			case "/gateway/login": {
+				HttpResponse<String> response = Util.sendHttpPost(client, loginSericeURL + "checkLogin", body);
+				Util.writeResponse(request, response.body(), response.statusCode());
+				break;
+			}
+			case "/gateway/logout": {
+				HttpResponse<String> response = Util.sendHttpPost(client, loginSericeURL + "logout", body);
+				Util.writeResponse(request, response.body(), response.statusCode());
+				break;
+			}
+			case "/gateway/sendMessage": {
+				
+				String messageService = getMessageServiceUrl();
+				
+				HttpResponse<String> response = Util.sendHttpPost(client, messageService + "sendMessage", body);
+				Util.writeResponse(request, response.body(), response.statusCode());
+				break;
+			}
+			case "/gateway/getMessages": {
+				
+				String messageService = getMessageServiceUrl();
+				
+				HttpResponse<String> response = Util.sendHttpPost(client, messageService + "getMessages", body);
+				Util.writeResponse(request, response.body(), response.statusCode());
+				break;
+			}
+			default:
+				String response = "Error: unknown path";
+				request.sendResponseHeaders(404, response.length());
+				OutputStream os = request.getResponseBody();
+				os.write(response.getBytes());
+				os.close();
+			}
+		} catch (Exception e) {
+			System.out.println(e.toString());
 		}
-		case "/gateway/login": {
-			HttpResponse<String> response = Util.sendHttpPost(client, loginSericeURL + "checkLogin", body);
-			Util.writeResponse(request, response.body(), response.statusCode());
-			break;
-		}
-		case "/gateway/logout": {
-			HttpResponse<String> response = Util.sendHttpPost(client, loginSericeURL + "logout", body);
-			Util.writeResponse(request, response.body(), response.statusCode());
-			break;
-		}
-		case "/gateway/sendMessage": {
-			HttpResponse<String> response = Util.sendHttpPost(client, messageService0URL + "sendMessage", body);
-			Util.writeResponse(request, response.body(), response.statusCode());
-			break;
-		}
-		case "/gateway/getMessages": {
-			HttpResponse<String> response = Util.sendHttpPost(client, messageService0URL + "getMessages", body);
-			Util.writeResponse(request, response.body(), response.statusCode());
-			break;
-		}
-		default:
-			String response = "Error: unknown path";
-			request.sendResponseHeaders(404, response.length());
-			OutputStream os = request.getResponseBody();
-			os.write(response.getBytes());
-			os.close();
+	}
+	
+	synchronized String getMessageServiceUrl() {
+		
+		if (takeMessageService1) {
+			takeMessageService1 = false;
+			return messageService0URL;
+		} else {
+			takeMessageService1 = true;
+			return messageService1URL;
 		}
 	}
 }
