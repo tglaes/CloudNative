@@ -31,6 +31,7 @@ TODO definition
 warum braucht man das im cloud native bereich
 Eigenschaften, Vorteile
 - um diese microservices zu verwalten werden ... TODO\\
+\\
 Microservices sind in Cloud Native Systemen zum Erstellen von Anwendungen ein beliebter Architekturstil. Bei dieser Architektur besteht die Software aus kleinen, unabhängigen Services bzw. Modulen, die über definierte APIs (application programming interface) kommunizieren. Jeder Service kann unabhängig von anderen Services entwickelt und bereitgestellt werden, ohne die Funktionalität anderer Services zu beeinträchtigen. Den Aufbau der Microservice-Architektur sowie die Darstellung der einzelnen unabhängigen Services sind in Abbildung \ref{micro} zu sehen.\\
 \begin{figure}[bth] 
 	\centering
@@ -45,25 +46,27 @@ Durch die einfache Bereitstellung können z.B. neue Konzepte ausprobiert und auc
 \\
 
 \section{Container}
-definition
+TODO definition
 warum braucht man das im cloud native bereich
 Eigenschaften, Vorteile
-Docker, Kubernetes\\
-
-- Standard-Software-Einheit, die den Code und seine Abhängigkeiten verpackt
- -> Anwendung schnell und zuverlässig von einer Umgebung zur anderen ausgeführt werden kann \\
-- Bieten schlanke und unveränderliche Infrastruktur für die Paketierung und Bereitstellung von Anwendungen\\
-- Cloud native Anwendungen nutzen Container für ein einheitliches Betriebssystem, denn durch den geringen Verwaltungsaufwand und die hohe Dichte können viele Container auf demselben virtuellen Computer gehostet werden\\
-
-Vorteile: \\
-- Weniger Speicherplatz: Virtualisierung auf Betriebssystemebene, mehrere Container direkt auf dem Kernel des Betriebssystems ausgeführt werden -> starten schneller\\
-- Isolation: laufen von anderen Anwendungen isoliert\\
-- Überall ausführbar/Portabilität: da die Softwarepakete alle Elemente enthalten, die zur Ausführung in beliebten Umgebungen erforderlich sind\\
-- Schnelle Skalierbarkeit: können schnell gestartet und angehalten werden -> Ressourcen hoch- und herunterskaliert werden können\\
-
-Docker: Beliebtes Open-Source-Containerformat zur Automatisierung der Bereitstellung von Anwendungen die z.B. in der Cloud ausgeführt werden können\\
-
-Kubernetes: Open-Source-Orchestrierungssystem zur Automatisierung der Verwaltung, Platzierung, Skalierung und des Routings von Containern\\
+Docker, Kubernetes TODO\\
+\\
+Auch Container sind ein wesentlicher Bestandteil von Cloud Native Systemen. \\
+Ein Container ist eine Standard-Software-Einheit, die den Code und seine Abhängigkeiten verpackt, sodass Anwendungen von ihrer Ausführungsumgebung abstrahiert werden. Mit dieser Entkopplung können containerbasierte Anwendungen schnell, zuverlässig bereitgestellt und von einer beliebigen Umgebung, wie z.B. in einer öffentlichen Cloud, ausgeführt werden. In Abbildung \ref{container} ist der Aufbau einer containerbasierte Anwendung zu sehen.\\
+\begin{figure}[bth] 
+	\centering
+	\includegraphics[width=0.6\textwidth]{Graphics/Container.png}
+	\caption{Aufbau einer containerbasierte Anwendung}
+	\label{container}
+\end{figure}\\
+Im Gegensatz zu virtuelle Maschinen wird bei der Containeriesierung weniger Speicherplatz benötigt. Hierbei handelt es sich um eine Virtualisierung auf Betriebssystemebene, da die Container direkt auf dem Kernel des Betriebssystems ausgeführt werden. Container teilen sich den Kernel des Betriebssystems, sodass sie schneller starten und im Vergleich zu einem vollständigen Betriebssystem nur einen Bruchteil an Speicher verwenden.\\
+Container haben eine hohe Portabilität, sodass sie überall ausgeführt werden können. Die Softwarepakete enthalten alle Elemente, die zur Ausführung in einer beliebigen Umgebung erforderlich sind.\\
+Auch bei der Containerisierung ist die Skalierbarkeit eine wichtige Eigenschaft. Denn hier besteht die Möglichkeit, dass die einzelnen Container je nach Ressourcenbedarf schnell gestartet sowie angehalten werden können. Zudem laufen sie isoliert von anderen Anwendungen.\\
+\\
+Es gibt verschieden Containerformate, mit deren Hilfe eine Anwendungsbereitstellung durch Containerisierung erleichtert wird. Bekannte Containerformate sind z.B. Docker und Kubernetes.\\
+Docker ist ein beliebtes Open-Source-Containerformat zur Automatisierung der Bereitstellung von Anwendungen, die z.B. in der Cloud ausgeführt werden können. Docker verpackt die Software mit seinen Abhängigkeiten und alles was zur Ausführung benötigt wird in Container.\\
+Wenn Anwendungen immer größer werden und die Betreibung immer komplexer wird, ist das Orchestierungssystem Kubernetes hilfreich.\\
+Kubernetes ist ein Open-Source-Orchestrierungssystem zur Automatisierung z.B. zur Verwaltung, Platzierung und Skalierung von Container.
 
 \section{Abgrenzungen}
 gegenüber monolith
