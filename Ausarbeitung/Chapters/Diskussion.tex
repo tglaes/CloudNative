@@ -5,11 +5,24 @@
 In diesem Kapitel diskutieren wird die entworfe Architekturn und den dazugehörigen Prototypen.
 
 \section{Vergleich mit Eigenschaften Cloud Nativ}
-skalierbarkeit
-infrastructure is fluid
-Updates und Tests verlaufen unscheinbar
-Sicherheit ist ein Teil der Architektur
-Globale Ebene
+In diesem Abschnitt sehen wir uns an, welche Cloud-Native Eigenschaften unsere Architektur erfüllt und welche nicht.
+
+1.) Skalierbarkeit
+Die Kombination von Microservices und eines Load-Balancers (API-Gateway) erfüllt auf den ersten Blick die Eigenschaft, denn es können Dank des Designs des Message-Microservices mehrere Instanzen gleichzeitig verwendet werden, auf die dann der Load-Balancer die Anfragen gleichmäßig verteilt. Da jedoch der Message-Microservice bei jeder Anfrage überprüfen muss, ob der vom Benutzer bereitgestellte Token gültig ist, wird für jede Anfrage auch eine weitere Anfrage an den Login-Microservice generiert. Diese Abhängigkeit wirkt sich stark negativ auf die Skalierbarkeit aus, da der Effekt von mehreren Message-Microservice Instanzen gleich null ist, wenn nur eine Instanz des Login-Microservices vorhanden ist. Dieses Problem ist Lösbar, indem man ebenfalls vom Login-Microservice mehrere Instanzen laufen lässt und die Anfragen des Message-Microservices an das API-Gateway sendet, welches dann die Anfragen an die Login-Microservice Instanzen verteilt.
+
+
+2.) Aufgebaut auf der Annahme "infrastructure is fluid and failure is constant"
+Hier ist leicht festzustellen, dass die Architektur diese Eigenschaft nicht erfüllt. Es wird nicht berücksichtigt, dass Infrastruktur sich ändern kann oder das Fehler auftreten können. Beide dieser Eigenschaften sind essentiell für Cloud-Native Architekturen, da ohne diese keine Anwendung in einer Cloud-Umgebung bestehen kann. Die Architektur hat jedoch das Potenzial diese Eigenschaften zu erfüllen, indem man z.B. Docker in Kombination mit Kubernetes verwendet.
+
+3) Updates und Tests verlaufen unscheinbar
+Wir können eine neue Version des Systems (API-Gateway und Mircoservices) auf neuen Strukturen installieren und testen, während die alte Version weiter verfügbar ist. Sind Installation und Test abgeschlossen kann der Verkehr von den Clients auf die neue Version geleitet werden. Dieser Ansatz nennt sich Immutable Infrastructure und wäre eine Möglichkeit diese Eigenschaft umzusetzten. Durch den modularen Aufbau der Architekur, können auch einzelne Microservices auf gleiche Weise upgedated werden. Insgesamt erfüllt die Architektur diese Eigenschaft in der Theorie wurde aber nicht in der Praxis ausgiebig getestet.
+
+
+4) Sicherheit ist ein Teil der Architektur
+Diese Eigenschaft ist erfüllt. Einerseits ist ein Authorisierungsmechanismus mithilfe von Tokens vorhanden, andererseits können im API-Gateway z.B. Logging und Schutz vor DDoS-Attacken implementiert werden. Es sei gesagt, dass dadurch das System noch weit entfernt ist von einem in der Praxis sicherem System.
+
+
+5) Globale Ebene
 
 \section{Microservices}
  Docker, Kubernetes
