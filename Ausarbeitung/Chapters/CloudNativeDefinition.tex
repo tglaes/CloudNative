@@ -69,18 +69,34 @@ Wenn Anwendungen immer größer werden und die Betreibung immer komplexer wird, 
 Kubernetes ist ein Open-Source-Orchestrierungssystem zur Automatisierung z.B. zur Verwaltung, Platzierung und Skalierung von Container.
 
 \section{Abgrenzungen}
-gegenüber monolith
-Definition, kurz: Eigenschaften anhand von Bild\\
+TODO Beschreibung hinzufügen\\
+gegenüber monolith\\
+Definition, kurz: Eigenschaften anhand von Bild TODO\\
 
-- gesamte Architektur muss skaliert werden, wenn in einem Prozess ein Fehler auftritt\\
-- Hinzufügen und Verbessern von Funktionen mit zunehmender Codebasis komplexer
- -> erschwert Umsetzung neuer Konzepte\\
-- Erhöhtes Risiko der Anwendungsverfügbarkeit -> viele Abhängige und eng miteinander verbundene Prozesse -> einzelner Prozessausfall erhöht\\
+\subsection{Monolithische Architektur}
+Bei einer monolithischen Architektur sind die Prozesse eng miteinander verbunden und werden als einziger Service ausgeführt. Wenn ein Fehler auftritt muss, im Gegensatz zu der Microservice Architektur, die gesamte Anwendung skaliert werden und nicht nur der betreffende Service. Das Hinzufügen und Verbessern von Funktionen kann je nach Aufbau der Implementierung mit zunehmender Codebasis komplexer werden sowie das Umsetzen neuer Konzepte kann je nach Aufbau der Anwendung schwieriger werden. Die Anwendungsverfügbarkeit ist im Gegensatz zu der Micorservices risikoreicher. Bei der monolithischen Architektur sind die einzelne Prozesse abhängig und eng miteinander verbunden, sodass ein einzelner Prozessausfall erhöht wird.\\
+In Abbildung \ref{mono} ist der Vergleich von dem Aufbau einer monolithischen und Microservice Architektur graphisch dargestellt.
+\begin{figure}[bth] 
+	\centering
+	\includegraphics[width=0.9\textwidth]{Graphics/monoVsMicro.png}
+	\caption{Aufbau der monolithische und der Microservice Architektur}
+	\label{mono}
+\end{figure}\\
 
-gegenüber virtualisierung\\
-kurz: Definition, Vergleich/Abgrenzung anhand von Bild\\
-
-Virtualisierung der gesamten Hardware bzw. Abstraktion der physischen Hardware, die einen Server in viele Server wandelt\\
+\subsection{Virtuelle Maschinen}
+TODO gegenüber virtualisierung\\
+kurz: Definition, Vergleich/Abgrenzung anhand von Bild TODO\\
+\\
+Im Gegensatz zu den Container, sind virtuelle Maschinen eine Virtualisierung der gesamten Hardware bzw. Abstraktion der physischen Hardware, die einen Server in viele Server wandelt. In Abbildung \ref{vm} ist der Aufbau einer containerbasierten Anwendung im Vergleich zu einer virtuellen Maschine dargestellt.
+\begin{figure}[bth] 
+	\centering
+	\includegraphics[width=0.9\textwidth]{Graphics/containerVsVm.png}
+	\caption{}
+	\label{vm}
+\end{figure}\\
+TODO...Vergleich genauer Beschreiben...TODO\\
+- jede Vm enthält eine vollständige Kopie eines Betriebssystems, der Anwendung, notwendiger Binärdateien und Bibliotheken, eigene CPU- und Speicherressourcen -> viel Speicher\\
+- Container besitzt seine Binärdateien und Bibliotheken\\
 
 \section{Eigenschaften}
 Als nächstes betrachten wir einige typischen Eigenschaften von Cloud-Native Architekturen. Im nächsten Abschnitt gehen wir dann darauf ein aus welchen Design Prinzipien hervorgehen.
