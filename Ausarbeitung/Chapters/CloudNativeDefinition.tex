@@ -26,11 +26,6 @@ Die Cloud Native Computing Foundation fördert die Akzeptanz dieser Paradigmen d
 Diese Definition lässt gewollt sehr viel Spielraum, jedoch stechen ein paar wichtige Merkmale heraus. Diese sind inbesondere Entkopplung, Belastbarkeit, robuste Automatisierung und Skalierbarkeit. Die Cloud Native Computing Foundation hat diese Defintion als Version 1.0 makiert, was darauf schließen lässt, das Änderunge oder Erweiterungen erwartet werden.
 
 \section{Microservices}
-TODO definition
-warum braucht man das im cloud native bereich
-Eigenschaften, Vorteile
-- um diese microservices zu verwalten werden ... TODO\\
-\\
 Microservices sind in Cloud Native Systemen zum Erstellen von Anwendungen ein beliebter Architekturstil. Bei dieser Architektur besteht die Software aus kleinen, unabhängigen Services bzw. Modulen, die über definierte APIs (application programming interface) kommunizieren. Jeder Service kann unabhängig von anderen Services entwickelt und bereitgestellt werden, ohne die Funktionalität anderer Services zu beeinträchtigen. Den Aufbau der Microservice-Architektur sowie die Darstellung der einzelnen unabhängigen Services sind in Abbildung \ref{micro} zu sehen.\\
 \begin{figure}[bth] 
 	\centering
@@ -42,14 +37,7 @@ Durch die Eigenständigkeit besitzt jeder Komponentenservice seinen eigenen Code
 In Cloud Native Systemen sowie in der Microservice-Architektur ist die Skalierung ein wichtiger Bestandteil. Durch die Existenz der einzelnen Services können diese je nach Nachfrage unabhängig voneinander skaliert werden. Dadurch können Subsysteme, die mehr Ressourcen benötigen aufskaliert werden, ohne die gesamte Anwendung aufzuskalieren.\\
 Eine weitere Eigenschaft ist die Flexibilität. Durch die Unabhängigkeit der einzelnen Services wird auch deren Verwaltung vereinfacht. Bei einer Erweiterung sowie Fehlerbehebung der Anwendung muss nur der entsprechende Service verändert werden. Dies führt dazu, dass nicht die gesamte Anwendung erneut bereitgestellt werden muss.\\
 Durch die einfache Bereitstellung können z.B. neue Konzepte ausprobiert und auch schnell wieder rückgängig gemacht werden. Auf Grund der möglichen Experimente entstehen niedrige Ausfallkosten, die Aktualisierung des Codes wird erleichtert und vereinfacht das Hinzufügen neuer Funktionen.
-\\
-
 \section{Container}
-TODO definition
-warum braucht man das im cloud native bereich
-Eigenschaften, Vorteile
-Docker, Kubernetes TODO\\
-\\
 Auch Container sind ein wesentlicher Bestandteil von Cloud Native Systemen. \\
 Ein Container ist eine Standard-Software-Einheit, die den Code und seine Abhängigkeiten verpackt, sodass Anwendungen von ihrer Ausführungsumgebung abstrahiert werden. Mit dieser Entkopplung können containerbasierte Anwendungen schnell, zuverlässig bereitgestellt und von einer beliebigen Umgebung, wie z.B. in einer öffentlichen Cloud, ausgeführt werden. In Abbildung \ref{container} ist der Aufbau einer containerbasierte Anwendung zu sehen.\\
 \begin{figure}[bth] 
@@ -61,41 +49,32 @@ Ein Container ist eine Standard-Software-Einheit, die den Code und seine Abhäng
 Im Gegensatz zu virtuelle Maschinen wird bei der Containeriesierung weniger Speicherplatz benötigt. Hierbei handelt es sich um eine Virtualisierung auf Betriebssystemebene, da die Container direkt auf dem Kernel des Betriebssystems ausgeführt werden. Container teilen sich den Kernel des Betriebssystems, sodass sie schneller starten und im Vergleich zu einem vollständigen Betriebssystem nur einen Bruchteil an Speicher verwenden.\\
 Container haben eine hohe Portabilität, sodass sie überall ausgeführt werden können. Die Softwarepakete enthalten alle Elemente, die zur Ausführung in einer beliebigen Umgebung erforderlich sind.\\
 Auch bei der Containerisierung ist die Skalierbarkeit eine wichtige Eigenschaft. Denn hier besteht die Möglichkeit, dass die einzelnen Container je nach Ressourcenbedarf schnell gestartet sowie angehalten werden können. Zudem laufen sie isoliert von anderen Anwendungen.\\
-\\
-Es gibt verschieden Containerformate, mit deren Hilfe eine Anwendungsbereitstellung durch Containerisierung erleichtert wird. Bekannte Containerformate sind z.B. Docker und Kubernetes.\\
+\\                                                                                        Es gibt verschiedene Containerformate, mit deren Hilfe eine Anwendungsbereitstellung durch Containerisierung erleichtert wird. Bekannte Containerformate sind z.B. Docker und Kubernetes.\\
 Docker ist ein beliebtes Open-Source-Containerformat zur Automatisierung der Bereitstellung von Anwendungen, die z.B. in der Cloud ausgeführt werden können. Docker verpackt die Software mit seinen Abhängigkeiten und alles was zur Ausführung benötigt wird in Container.\\
 Wenn Anwendungen immer größer werden und die Betreibung immer komplexer wird, ist das Orchestierungssystem Kubernetes hilfreich.\\
 Kubernetes ist ein Open-Source-Orchestrierungssystem zur Automatisierung z.B. zur Verwaltung, Platzierung und Skalierung von Container.
-
+                   
 \section{Abgrenzungen}
-TODO Beschreibung hinzufügen\\
-gegenüber monolith\\
-Definition, kurz: Eigenschaften anhand von Bild TODO\\
+In diesem Abschnitt wird die Monolithische Architektur im Gegensatz zur Microservices Architektur abgegrenzt. Darüber hinaus werden virtuelle Maschinen einer containerbasierten Anwendung gegenübergestellt.
 
 \subsection{Monolithische Architektur}
-Bei einer monolithischen Architektur sind die Prozesse eng miteinander verbunden und werden als einziger Service ausgeführt. Wenn ein Fehler auftritt muss, im Gegensatz zu der Microservice Architektur, die gesamte Anwendung skaliert werden und nicht nur der betreffende Service. Das Hinzufügen und Verbessern von Funktionen kann je nach Aufbau der Implementierung mit zunehmender Codebasis komplexer werden sowie das Umsetzen neuer Konzepte kann je nach Aufbau der Anwendung schwieriger werden. Die Anwendungsverfügbarkeit ist im Gegensatz zu der Micorservices risikoreicher. Bei der monolithischen Architektur sind die einzelne Prozesse abhängig und eng miteinander verbunden, sodass ein einzelner Prozessausfall erhöht wird.\\
-In Abbildung \ref{mono} ist der Vergleich von dem Aufbau einer monolithischen und Microservice Architektur graphisch dargestellt.
+Bei einer monolithischen Architektur sind die Prozesse eng miteinander verbunden und werden als einziger Service ausgeführt. Wenn ein Fehler auftritt, muss im Gegensatz zu der Microservice Architektur, die gesamte Anwendung skaliert werden und nicht nur der betreffende Service. Das Hinzufügen und Verbessern von Funktionen sowie das Umsetzen neuer Konzepte kann bei der monolithischen Architektur je nach Aufbau der Implementierung mit zunehmender Codebasis komplexer werden. Die Anwendungsverfügbarkeit ist im Gegensatz zu den Micorservices risikoreicher. Bei der monolithischen Architektur sind die einzelne Prozesse abhängig voneinander und eng miteinander verbunden, sodass die Wahrscheinlichkeit für einen Prozessausfall erhöht wird.\\
+In Abbildung \ref{mono} sind die Aufbauten der monolithischen Architektur und der Microservice Architektur vergleichend dargestellt.
 \begin{figure}[bth] 
 	\centering
 	\includegraphics[width=0.9\textwidth]{Graphics/monoVsMicro.png}
-	\caption{Aufbau der monolithische und der Microservice Architektur}
+	\caption{Vergleich der monolithischen Architektur und der Microservice Architektur}
 	\label{mono}
 \end{figure}\\
-
 \subsection{Virtuelle Maschinen}
-TODO gegenüber virtualisierung\\
-kurz: Definition, Vergleich/Abgrenzung anhand von Bild TODO\\
-\\
-Im Gegensatz zu den Container, sind virtuelle Maschinen eine Virtualisierung der gesamten Hardware bzw. Abstraktion der physischen Hardware, die einen Server in viele Server wandelt. In Abbildung \ref{vm} ist der Aufbau einer containerbasierten Anwendung im Vergleich zu einer virtuellen Maschine dargestellt.
+Im Gegensatz zu Container, sind virtuelle Maschinen eine Virtualisierung der gesamten Hardware bzw. Abstraktion der physischen Hardware, die einen Server in viele Server wandelt. In Abbildung \ref{vm} ist der Aufbau einer containerbasierten Anwendung im Vergleich zu einer virtuellen Maschine dargestellt.
 \begin{figure}[bth] 
 	\centering
 	\includegraphics[width=0.9\textwidth]{Graphics/containerVsVm.png}
 	\caption{}
 	\label{vm}
 \end{figure}\\
-TODO...Vergleich genauer Beschreiben...TODO\\
-- jede Vm enthält eine vollständige Kopie eines Betriebssystems, der Anwendung, notwendiger Binärdateien und Bibliotheken, eigene CPU- und Speicherressourcen -> viel Speicher\\
-- Container besitzt seine Binärdateien und Bibliotheken\\
+Der Hypervisor ermöglicht die Ausführung mehrerer virtuellen Maschinen auf einer einzigen Maschine. Jede virtuelle Maschine enthält eine vollständige Kopie eines Betriebssystems, der Anwendung, notwendiger Binärdateien und Bibliotheken. In Abbildung \ref{vm} sind drei Gastbetriebssysteme zu sehen, die alle von ihrem Hypervisor kontrolliert werden. Jedes System benötigt seine eigenen CPU- und Speicherressourcen sowie seine eigene Kopie verschiedener Binärdateien und Bibliotheken. Dadurch benötigen virtuelle Maschinen im Vergleich zu containerbasierten Anwendungen mehr Speicher.
 
 \section{Eigenschaften}
 Als nächstes betrachten wir einige typischen Eigenschaften von Cloud-Native Architekturen. Im nächsten Abschnitt gehen wir dann darauf ein aus welchen Design Prinzipien hervorgehen.
