@@ -2,37 +2,36 @@
 % 	   Fallbeispiel     		 =
 %=========================================
 \chapter{Fallbeispiel}
-In diesem Kapitel stellen wir, eine anhand eines selbst ausgedachten Anwendungsfalls, Cloud-Native Architektur vor, die wir prototypisch implementiert haben.
+Wir haben uns einen Anwendungsfall selbst ausgedacht und dafür eine Architektur entworfen und prototypisch implementiert. In diesem Kapitel stellen wir Anwendungsfall, Architektur und Implementierung vor.
 
 \section{Beschreibung}
-Im Rahmen des Beispiels, haben wir eine Cloud-Native Architekturn für ein Chatprogramm (ChatApp) entworfen. Die Applikation soll drei Funktionen besitzen. Benutzer sollen sich registrieren können, Benutzer sollen sich ein-und ausloggen können und Benutzer sollen Nachrichten an andere Benutzer schreiben können. Im folgenden sind alle funktionalen und nichtfunktionalen Anforderungen aufgeführt.
+Im Rahmen des Beispiels, haben wir eine Cloud-Native Architekturn für ein Chatprogramm (ChatApp) entworfen. Die Applikation soll drei Funktionen besitzen. Benutzer sollen sich registrieren, ein-und ausloggen und Nachrichten an andere Benutzer schreiben können. Im folgenden sind die funktionalen und nichtfunktionalen Anforderungen aufgeführt.
 
 
 \section{Anforderungen}
 \subsection{Nichtfunktionale Anforderungen}
-1. Skalierbarkeit
-Das System muss mit einer großen Zahl von Benutzern, die das System gleichzeit verwenden, umgehen können.
-
-2. Verfügbarkeit
-Das System muss zu jeder Zeit verfügbar sein.
-
-3. Sicherheit
-Das System muss Berechtigungen überprüfen können (z.B. darf Benutzer X die Nachrichten lesen) und das System sollte sich gegen übliche Cyberangriffe (z.B. DDoS) schützen können.
-
-4. Änderbarkeit/Erweiterbarkeit
+1. Skalierbarkeit\\
+Das System muss mit einer großen Zahl von Benutzern, die das System gleichzeit verwenden, umgehen können.\\
+\\
+2. Verfügbarkeit\\
+Das System soll eine hohe Verfügbarkeit haben.\\
+\\
+3. Sicherheit\\
+Das System muss Berechtigungen überprüfen können (z.B. darf ein Benutzer die Nachrichten, die er abrufen will, lesen) und das System sollte sich gegen übliche Cyberangriffe (z.B. DDoS) schützen können.\\
+\\
+4. Änderbarkeit/Erweiterbarkeit\\
 Das System muss es zulassen, dass weitere Komponenten (z.B. Hochladen von Bildern und Videos) einfach hinzugefügt werden können.
 
 \subsection{Funktionale Anforderungen}
-1. Registierung
-Ein Benutzer kann sich mit seiner E-Mail Adresse und einem Passwort im System registieren.
-
-2. Ein- und Ausloggen
-Ein Benutzer kann sich mit seiner E-Mail Adresse und seinem Passwort im System anmelden und danach die Funkionen nutzen bis er sich abmeldet.
-
-3. Nachrichten schreiben/lesen
-Ein Benutzer kann Nachrichten an andere Benutzer senden und Nachrichten, die an ihn gesendet worden sind, abrufen.
-
-
+1. Registierung\\
+Ein Benutzer kann sich mit seiner E-Mail Adresse und einem Passwort im System registieren.\\
+\\
+2. Ein- und Ausloggen\\
+Ein Benutzer kann sich mit seiner E-Mail Adresse und seinem Passwort im System anmelden und danach die Funkionen nutzen bis er sich abmeldet.\\
+\\
+3. Nachrichten schreiben/lesen\\
+Ein Benutzer kann Nachrichten an andere Benutzer senden und Nachrichten, die an ihn gesendet worden sind, abrufen.\\
+\\
 Im nächsten Abschnitt stellen wir die von uns entworfene Architektur vor und erläutern die wichtigsten Merkmale. 
 
 \begin{figure}[bth] 

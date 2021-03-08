@@ -3,27 +3,27 @@
 %=========================================
 \chapter{Cloud Native}
 
-In diesem Kapitel gehen wir auf die Definition von Cloud-Native Architekturen ein, grenzen sie von anderen Absätzen ab und betrachten wichtige Eigenschaften. Abschließend beschäftigen wir uns mit den Vor-und Nachteilen und den typischen Einsatzgebieten.
+In zweiten Kapitel gehen wir auf die Definition von Cloud-Native Architekturen ein, grenzen sie von anderen Absätzen ab und betrachten wichtige Eigenschaften. Abschließend beschäftigen wir uns mit den Vor-und Nachteilen und den typischen Einsatzgebieten.
 
 \section{Cloud Computing}
-Bevor wir uns mit Cloud-Native auseinandersetzten können, müssen wir uns zuerst mit dem Cloud Computing beschäftigen, da es nämlich die Basis für diese Architekturen bildet und sie maßgeblich beeinflusst. Die NIST Definition von Cloud Computing enthält die wichtigsten Merkmalen.
-
-Cloud computing is a model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources (e.g., networks, servers, storage, applications, and services) that can be rapidly provisioned and released with minimal management effort or service provider interaction. This cloud model is composed of five essential characteristics, three service models, and four deployment models. TODO
-
+Bevor wir uns mit Cloud-Native Architekturen auseinandersetzten können, müssen wir uns zuerst mit dem Cloud Computing beschäftigen, da es die Basis für diese Architekturen bildet und sie maßgeblich beeinflusst. Die NIST Definition von Cloud Computing enthält die wichtigsten Merkmalen.\\
+\\
+Cloud computing is a model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources (e.g., networks, servers, storage, applications, and services) that can be rapidly provisioned and released with minimal management effort or service provider interaction. This cloud model is composed of five essential characteristics, three service models, and four deployment models.\\
+\\
 Entscheidend für Cloud-Native ist nun die schnelle Bereitstellung von Resourcen, denn dies eröffnet neue Möglichkeiten hinsichitlich der Skalierbarkeit und hat dadurch einen starken Einfluss auf die Architekturen.
 
 \section{Definition Cloud Native}
 Was genau Cloud-Native ist und wie man es definieren kann ist schwierig, da der Begriff noch relativ neu ist. Eine erste Version einer Definition kommt von der Cloud Native Computing Foundation, einer Organisation, die als Vorreiter in Sachen Cloud-Native gilt.\\
 \\
-CNCF Cloud Native Definition v1.0
-
+CNCF Cloud Native Definition v1.0\\
+\\
 Cloud native Technologien ermöglichen es Unternehmen, skalierbare Anwendungen in modernen, dynamischen Umgebungen zu implementieren und zu betreiben. Dies können öffentliche, private und Hybrid-Clouds sein. Best Practices, wie Container, Service-Meshs, Microservices, immutable Infrastruktur und deklarative APIs, unterstützen diesen Ansatz.
-
+\\
 Die zugrundeliegenden Techniken ermöglichen die Umsetzung von entkoppelten Systemen, die belastbar, handhabbar und beobachtbar sind. Kombiniert mit einer robusten Automatisierung können Softwareentwickler mit geringem Aufwand flexibel und schnell auf Änderungen reagieren.
-
-Die Cloud Native Computing Foundation fördert die Akzeptanz dieser Paradigmen durch die Ausgestaltung eines Open Source Ökosystems aus herstellerneutralen Projekten. Wir demokratisieren modernste und innovative Softwareentwicklungs-Patterns, um diese Innovationen für alle zugänglich zu machen.
-
-Diese Definition lässt gewollt sehr viel Spielraum, jedoch stechen ein paar wichtige Merkmale heraus. Diese sind inbesondere Entkopplung, Belastbarkeit, robuste Automatisierung und Skalierbarkeit. Die Cloud Native Computing Foundation hat diese Defintion als Version 1.0 makiert, was darauf schließen lässt, das Änderunge oder Erweiterungen erwartet werden.
+\\
+Die Cloud Native Computing Foundation fördert die Akzeptanz dieser Paradigmen durch die Ausgestaltung eines Open Source Ökosystems aus herstellerneutralen Projekten. Wir demokratisieren modernste und innovative Softwareentwicklungs-Patterns, um diese Innovationen für alle zugänglich zu machen.\\
+\\
+Diese Definition lässt gewollt viel Spielraum zur Interpretation, jedoch stechen ein paar wichtige Merkmale heraus. Diese sind inbesondere Entkopplung, Belastbarkeit, robuste Automatisierung und Skalierbarkeit. Die Cloud Native Computing Foundation hat diese Defintion als Version 1.0 makiert, was darauf schließen lässt, das Änderungen oder Erweiterungen erwartet werden.
 
 \section{Microservices}
 Microservices sind in Cloud Native Systemen zum Erstellen von Anwendungen ein beliebter Architekturstil. Bei dieser Architektur besteht die Software aus kleinen, unabhängigen Services bzw. Modulen, die über definierte APIs (application programming interface) kommunizieren. Jeder Service kann unabhängig von anderen Services entwickelt und bereitgestellt werden, ohne die Funktionalität anderer Services zu beeinträchtigen. Den Aufbau der Microservice-Architektur sowie die Darstellung der einzelnen unabhängigen Services sind in Abbildung \ref{micro} zu sehen.\\
@@ -77,57 +77,55 @@ Im Gegensatz zu Container, sind virtuelle Maschinen eine Virtualisierung der ges
 Der Hypervisor ermöglicht die Ausführung mehrerer virtuellen Maschinen auf einer einzigen Maschine. Jede virtuelle Maschine enthält eine vollständige Kopie eines Betriebssystems, der Anwendung, notwendiger Binärdateien und Bibliotheken. In Abbildung \ref{vm} sind drei Gastbetriebssysteme zu sehen, die alle von ihrem Hypervisor kontrolliert werden. Jedes System benötigt seine eigenen CPU- und Speicherressourcen sowie seine eigene Kopie verschiedener Binärdateien und Bibliotheken. Dadurch benötigen virtuelle Maschinen im Vergleich zu containerbasierten Anwendungen mehr Speicher.
 
 \section{Eigenschaften}
-Als nächstes betrachten wir einige typischen Eigenschaften von Cloud-Native Architekturen. Im nächsten Abschnitt gehen wir dann darauf ein aus welchen Design Prinzipien hervorgehen.
-
-1.) Globale Ebene
-Cloud-Native Architekturen sind oft für eine globale Ebene ausgelegt. Das impliziert z.B. das Daten und Dienste mehrfach installiert und Daten von verschiedenen Quellen synchronisiert werden müssen.
-
-2.) Skalierbarkeit
-Die entstehenden Architekturen sind skalierbar und können eine sehr große Menge von Benutzern unterstützen. Dies ist besonders in Kombination mit der globalen Ebene, wenn man Sychronisation und Konsistenz betrachtet, eine große Herausforderung.
-
-3.) "Built on the assumption that infrastructure is fluid and failure is constant"
-Die Annahme "infrastructure is fluid" bedeutet, dass die unterliegenden Strukturen (Hardware) der nicht konstant sind. So können z.B. Recheneinheiten (CPUs) hinzukommen oder wegfallen. Diese Annahme resultiert aus der Verwendung von Cloud Technologien und bildet die Basis für das Entwerfen von skalierbaren Architekturen.
-Die zweite Annahme, dass Fehler konstant auftreten, ergibt sich ebenfalls aus der Verwendung von Cloud Technologien, denn wenn eine große Anzahl von Hardwarekomponenten verwendet wird steigt die Wahrscheinlichkeit von einem Ausfall. Die Architektur muss also die Möglichkeit von Hardwarefehlern miteinbeziehen. Anders kann man dies auch Wiederstandsfähigkeit bezeichnen.
-
-4.) Updates und Tests verlaufen unscheinbar
-Die Architekturen sind so entworfen, dass Systeme, ohne Verlust von Verfügbarkeit, geupdatet und getestet werden können.
-
-5.) Sicherheit
-Sicherheit spielt eine wichtige Rolle in Cloud-Native Architekturen. Die meisten Systeme bestehen  aus vielen kleinen Teilen, für welche Zugriff auf andere Teile und Autorisierung/Authentifizierung von Benutzern geregelt werden muss.
+Als nächstes betrachten wir die häufigst gennanten Eigenschaften von Cloud-Native Architekturen.\\
+\\
+1.) Globale Ebene\\
+Cloud-Native Architekturen sind oft für eine globale Ebene ausgelegt. Das impliziert z.B., dass das System mehrfach installiert werden muss und den Einsatz von verteilten Datenbanken.\\
+\\
+2.) Skalierbarkeit\\
+Die entstehenden Architekturen sind skalierbar und können eine sehr große Menge von Benutzern unterstützen. Dies ist besonders in Kombination mit der globalen Ebene, wenn man Sychronisation und Konsistenz betrachtet, eine große Herausforderung.\\
+\\
+3.) Annahme über Infrastruktur\\
+Die Annahme \glqq infrastructure is fluid\grqq{}, im Deutschen etwa Infrastruktur ist ständig änderbar, bedeutet, dass die unterliegenden Strukturen nicht konstant sind, wie sie es vergleichsweise bei einem Server sind, der eine bestimmte Anzahl von CPUs hat. So können z.B. Recheneinheiten (CPUs) hinzukommen oder wegfallen. Diese Annahme resultiert aus der Verwendung von Cloud Technologien und bildet die Basis für das Entwerfen von skalierbaren Architekturen.\\
+Die zweite Annahme, dass Fehler konstant auftreten, ergibt sich ebenfalls aus der Verwendung von Cloud Technologien, denn wenn eine große Anzahl von Hard- und Softwarekomponenten verwendet werden steigt die Wahrscheinlichkeit von einem unerwarteten Ausfall. Die Architektur muss also die Möglichkeit von solchen Fehlern miteinbeziehen, denn anders ist sie nicht widerstandsfähig genug, um effektiv in einer Cloud-Umgebung zu bestehen.\\
+\\
+4.) Updates und Tests verlaufen unscheinbar\\
+Die Architekturen sind so entworfen, dass Systeme, ohne Verlust von Verfügbarkeit, geupdatet und getestet werden können. Techniken, die hier zum Einsatz kommen sind unter Anderem CI/CD Pipelines, die den Prozess von Entwicklung bis Installation automatisieren und Immutable Infrastructures ein Ansatz, bei dem bestehende Systeme nicht verändert werden und stattdessen eine neuere Version auf einem neuem System neu installiert wird.\\
+\\
+5.) Sicherheit\\
+Sicherheit spielt eine wichtige Rolle in Cloud-Native Architekturen. Die meisten Systeme bestehen aus vielen Komponenten, was eine breite Angriffsfläche bietet. Außerdem ist Authorisierung und Authenifizierung keine einfache Sache in einem entkoppelten verteilten System. Deshalb sollte Sicherheit schon beim Entwurf der Architektur eine Rolle spielen.
 
 \section{Vor- und Nachteile}
-In diesem Abschnitt nennen und erklären wir einige Vor- und Nachteile von Cloud-Native Architekturen. Wir beginnen mit den Vorteilen.
-
-1. Skalierbarkeit/Elastizität
-Aus der Kombination von lose gekoppelten Komponenten und Cloud-Infrastruktur entstehen effektiv skalierbare Architekturen, denn die Komponenten können individuell hoch und runterskaliert werden. Vorraussetzung ist, dass die einzelnen Komponenten unabhängig voneinander und zustandslos sind.
-
-2. Zuverlässigkeit/Wiederstandsfähigkeit
-Cloud-Native Architekturen sind robust gegen Ausfälle der unterliegenden Strukturen. Komponenten werden überwacht und bei Bedarf neu gestartet.
-
-3. Änderbarkeit/Wartbarkeit
-Da Komponenten weitesgehend voneinander unabhängig sind, können leichter Änderungen gemacht werden, ohne andere Komponenten auch ändern zu müssen.
-
-4. Übertragbarkeit
-Durch die Verwendung von Containern und CI/CD Pipelines ist es möglich die Systeme in andere Umgebungen einfach zu installieren. Container ermöglichen dabei eine Uniforme Umgebung für die Komponenten.
-
-prozess der pipeline, container als hauptmerkmal
-
-5. Cloud-Native Computing Foundation
-Die CNCF ist eine Organisation, die die Entwicklung im Cloud-Native Bereich unterstützt. Sie ist ein zentraler Punkt für Informationen zu Best Practices, Standards, Open-Source Projekte und Neuigkeiten im Bereich Cloud Native.
-
-Die Liste der Nachteile ist zwar kurz, jedoch sind die Punkte hoch zu gewichten.
-
-1. Komplexität
-Wie in der Vorlesung gelernt gilt für das Entwerfen von Software-Architekturen "There is no silver bullet". Dies trifft wahrscheinlich am meisten auf Cloud Native Architekturen zu. Zwar existieren Tools und Herasngehensweisen, die in fast allen Cloud Native Architekturen zum Einsatz kommen, jedoch ist die schiere Auswahl an Möglichkeiten, die getroffen werden müssen, bereits eine Herausforderung. 
+In diesem Abschnitt nennen und erklären wir einige Vor- und Nachteile von Cloud-Native Architekturen. Wir beginnen mit den Vorteilen.\\
+\\
+1. Skalierbarkeit/Elastizität\\
+Aus der Kombination von entkoppelten Komponenten und Cloud-Infrastruktur entstehen effektiv skalierbare Architekturen, denn die Komponenten können individuell hoch und runterskaliert werden. Vorraussetzung ist, dass die einzelnen Komponenten unabhängig voneinander und zustandslos sind.\\
+\\
+2. Zuverlässigkeit/Wiederstandsfähigkeit\\
+Cloud-Native Architekturen sind robust gegen Ausfälle der unterliegenden Strukturen. Komponenten werden überwacht und bei Bedarf neu gestartet.\\
+redundanz
+\\
+3. Änderbarkeit/Wartbarkeit\\
+Da Komponenten weitesgehend voneinander unabhängig sind, können leichter Änderungen gemacht werden, ohne andere Komponenten auch ändern zu müssen.\\
+\\
+4. Übertragbarkeit\\
+Durch die Verwendung von Containern und CI/CD Pipelines ist es möglich die Systeme in andere Umgebungen einfach zu installieren. Container ermöglichen dabei eine Uniforme Umgebung für die Komponenten.\\
+\\
+5. Cloud-Native Computing Foundation\\
+Die CNCF ist eine Organisation, die die Entwicklung im Cloud-Native Bereich unterstützt. Sie ist ein zentraler Punkt für Informationen zu Best Practices, Standards, Open-Source Projekte und Neuigkeiten im Bereich Cloud Native.\\
+\\
+Die Liste der Nachteile ist zwar kurz, jedoch sind die Punkte hoch zu gewichten.\\
+\\
+1. Komplexität\\
+Wie in der Vorlesung gelernt gilt für das Entwerfen von Software-Architekturen "There is no silver bullet". Dies trifft wahrscheinlich am meisten auf Cloud Native Architekturen zu. Zwar existieren Tools und Herangehensweisen, die in fast allen Cloud Native Architekturen zum Einsatz kommen, jedoch ist die schiere Auswahl an Möglichkeiten, die getroffen werden müssen, bereits eine Herausforderung. 
 Jede Cloud Native Applikation ist ein verteiltes System, welche an sich schon sehr komplex werden können. Addiert man hierzu noch Container/Container-Orchestrierung, Sicherheitsaspekte, Datenhaltung und Skalierung/Lastenverteilung kann sehr schnell der Überblick verloren gehen. Des Weiteren ist eine solche Architektur nicht einfach zu testen, installieren oder upzudaten und es müssen weiter Tools verwendet werden, die die DevOps unterstützen.
 Abschließend ist zu sagen, dass die hohe Komplexität aus den hohen Anforderungen (Skalierbarkeit, Erreichbarkeit, Sicherheit, etc.), die an Cloud Native Architekturen gestellt werden, stammt. Die Komplexität ist ein Tradeoff der bei Cloud Native Architekturen eingegangen wird, da diese in einem Zielkonflikt mit anderen Anforderungen steht. d.h. je höher der Anspruch desto komplexer gestaltet sich die Architektur.
 
 
-2. Neuer Ansatz/Technologie
+2. Neuer Ansatz/Technologie\\
 Die Cloud Native Computing Foundation treibt den Bereich Cloud Native stark voran, dennoch ist es ein relativ neuer Ansatz. Ständig werden neue Innovationen gemacht und bestehende Tools erweitert. Dies bedeutet, dass z.B. Fachliteratur und Erfahrene Entwickler kaum vorhanden sind. Jedoch wird wegen der hohe Komplexität eine hohe Expertise benötigt, was den Cloud-Native Bereich so schwierig macht.
-
 
 \section{Einsatzgebiete}
 Cloud-Native Architekturen werden derzeit meistens für Systeme benutzt, die entweder mit vielen Daten und/oder mit einer großen Anzahl von Benutzern umgehen müssen. Also generell Systeme, die ein hohes Maß an Skalierbarkeit fordern. Besonders in den Bereichen Streaming und Big Data werden häufig Cloud-Native Architekturen verwendet. 
-Beispiele sind der Streaming-Dienst von Netflix sowie die Cloud Platformen von Goolge (Goolge Cloud Platform) und Amazon (AWS). In den Fällen von Google und Amazon werden Platformen angeboten die es wiederum ermöglichen Cloud-Native Applikation zu entwicklen.
-Anzumerken ist, dass viele Unternehmen eine Migration ihrer Dienste in die Cloud vorgenommen haben, da die Möglichkeiten für Cloud basierte Systeme erst im letzten Jahrzent wirklich zu einer Option wurde. 
+Beispiele sind der Streaming-Dienst von Netflix sowie Produktivitätsprodukte von Goolge. Mittlerweile werden auch Cloud-Plattformen Angeboten (Goggle Cloud Platform und AWS), die es wiederum ermöglichen Cloud-Native Applikation zu entwicklen.
+Anzumerken ist, dass viele Unternehmen eine Migration ihrer Dienste in die Cloud vorgenommen haben, da die Möglichkeiten für Cloud basierte Systeme erst im letzten Jahrzent wirklich zu einer Option wurde.
