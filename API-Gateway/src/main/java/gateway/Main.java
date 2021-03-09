@@ -43,6 +43,8 @@ class GatewayHandler implements HttpHandler {
 	@Override
 	public void handle(HttpExchange request) throws IOException {
 
+		doSecurityCheck(request);
+		
 		try {
 			System.out.println("URL:" + request.getRequestURI().toString());
 			String body = new String(request.getRequestBody().readAllBytes());
@@ -69,7 +71,7 @@ class GatewayHandler implements HttpHandler {
 				
 				String messageService = getMessageServiceUrl();
 				
-				HttpResponse<String> response = Util.sendHttpPost(client, messageService + "sendMessage", body);
+				HttpResponse<String> response = Util.sendHttpPost(client, messageService + "s", body);
 				Util.writeResponse(request, response.body(), response.statusCode());
 				break;
 			}
@@ -102,5 +104,9 @@ class GatewayHandler implements HttpHandler {
 			takeMessageService1 = true;
 			return messageService1URL;
 		}
+	}
+	
+	private void doSecurityCheck(HttpExchange request) {
+		// Do some security check
 	}
 }

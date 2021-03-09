@@ -119,31 +119,30 @@ Sicherheit spielt eine wichtige Rolle in Cloud-Native Architekturen. Die meisten
 \section{Vor- und Nachteile}
 In diesem Abschnitt nennen und erklären wir einige Vor- und Nachteile von Cloud-Native Architekturen. Wir beginnen mit den Vorteilen.\\
 \\
-1. Skalierbarkeit/Elastizität\\
-Aus der Kombination von entkoppelten Komponenten und Cloud-Infrastruktur entstehen effektiv skalierbare Architekturen, denn die Komponenten können individuell hoch und runterskaliert werden. Vorraussetzung ist, dass die einzelnen Komponenten unabhängig voneinander und zustandslos sind.\\
+1.) Skalierbarkeit/Elastizität\\
+Aus der Kombination von entkoppelten Komponenten, Orchestrierung und Cloud-Infrastruktur entstehen effektiv skalierbare (auch elastische) Architekturen. Orchestrierung spielt dabei eine große Rolle, da ohne sie in größeren Systemen Skalierbarkeit kaum realisierbar ist.\\
 \\
-2. Zuverlässigkeit/Wiederstandsfähigkeit\\
-Cloud-Native Architekturen sind robust gegen Ausfälle der unterliegenden Strukturen. Komponenten werden überwacht und bei Bedarf neu gestartet.\\
-redundanz
+2.) Zuverlässigkeit/Wiederstandsfähigkeit\\
+Cloud-Native Architekturen sind robust gegen Ausfälle der unterliegenden Strukturen. Hierzu werden Komponenten überwacht und bei Fehlern neu gestartet. Komponenten sind dabei oft, auch Zwecks Skalierbarkeit, redundant vorhanden. Auch hat die Orchestrierung eine wichtige Rolle, da sie für die Überwachung verantwortlich ist.\\
 \\
-3. Änderbarkeit/Wartbarkeit\\
-Da Komponenten weitesgehend voneinander unabhängig sind, können leichter Änderungen gemacht werden, ohne andere Komponenten auch ändern zu müssen.\\
+3.) Änderbarkeit/Wartbarkeit\\
+Da Komponenten (wie z.B. Microservices) weitesgehend voneinander unabhängig sind, können leichter Änderungen gemacht werden, ohne andere Komponenten auch ändern zu müssen. Auch können Teile der Architektur unabhängig vom Rest installiert oder ausgestauscht werden\\
 \\
-4. Übertragbarkeit\\
-Durch die Verwendung von Containern und CI/CD Pipelines ist es möglich die Systeme in andere Umgebungen einfach zu installieren. Container ermöglichen dabei eine Uniforme Umgebung für die Komponenten.\\
+4.) Übertragbarkeit\\
+Durch die Verwendung von Containern und CI/CD Pipelines ist es möglich die Systeme in andere Umgebungen einfach zu installieren. Container ermöglichen dabei eine Uniforme Umgebung für die Komponenten und ist damit unabdingbar für Cloud-Native Architekturen. \\
 \\
-5. Cloud-Native Computing Foundation\\
+5.) Cloud-Native Computing Foundation\\
 Die CNCF ist eine Organisation, die die Entwicklung im Cloud-Native Bereich unterstützt. Sie ist ein zentraler Punkt für Informationen zu Best Practices, Standards, Open-Source Projekte und Neuigkeiten im Bereich Cloud Native.\\
 \\
 Die Liste der Nachteile ist zwar kurz, jedoch sind die Punkte hoch zu gewichten.\\
 \\
-1. Komplexität\\
+1.) Komplexität\\
 Wie in der Vorlesung gelernt gilt für das Entwerfen von Software-Architekturen "There is no silver bullet". Dies trifft wahrscheinlich am meisten auf Cloud Native Architekturen zu. Zwar existieren Tools und Herangehensweisen, die in fast allen Cloud Native Architekturen zum Einsatz kommen, jedoch ist die schiere Auswahl an Möglichkeiten, die getroffen werden müssen, bereits eine Herausforderung. 
-Jede Cloud Native Applikation ist ein verteiltes System, welche an sich schon sehr komplex werden können. Addiert man hierzu noch Container/Container-Orchestrierung, Sicherheitsaspekte, Datenhaltung und Skalierung/Lastenverteilung kann sehr schnell der Überblick verloren gehen. Des Weiteren ist eine solche Architektur nicht einfach zu testen, installieren oder upzudaten und es müssen weiter Tools verwendet werden, die die DevOps unterstützen.
-Abschließend ist zu sagen, dass die hohe Komplexität aus den hohen Anforderungen (Skalierbarkeit, Erreichbarkeit, Sicherheit, etc.), die an Cloud Native Architekturen gestellt werden, stammt. Die Komplexität ist ein Tradeoff der bei Cloud Native Architekturen eingegangen wird, da diese in einem Zielkonflikt mit anderen Anforderungen steht. d.h. je höher der Anspruch desto komplexer gestaltet sich die Architektur.
+Jede Cloud Native Applikation ist ein verteiltes System, welche an sich schon sehr komplex werden können. Addiert man hierzu noch Container/Container-Orchestrierung, Sicherheitsaspekte, Datenhaltung und Skalierung/Lastenverteilung kann sehr schnell der Überblick verloren gehen. Des Weiteren ist eine solche Architektur nicht einfach zu testen, installieren oder upzudaten und es müssen weiter Tools verwendet werden um dies zu bewerkstelligen.
+Abschließend ist zu sagen, dass die hohe Komplexität aus den hohen Anforderungen (Skalierbarkeit, Erreichbarkeit, Sicherheit, etc.) stammt, die an Cloud Native Architekturen gestellt werden und daher unvermeidbar ist. Die Komplexität ist ein Tradeoff, der bei Cloud Native Architekturen eingegangen wird, da diese in einem Zielkonflikt mit anderen Anforderungen steht, d.h. je höher die Ansprüche desto komplexer gestaltet sich die Architektur.
 
 
-2. Neuer Ansatz/Technologie\\
+2.) Neuer Ansatz/Technologie\\
 Die Cloud Native Computing Foundation treibt den Bereich Cloud Native stark voran, dennoch ist es ein relativ neuer Ansatz. Ständig werden neue Innovationen gemacht und bestehende Tools erweitert. Dies bedeutet, dass z.B. Fachliteratur und Erfahrene Entwickler kaum vorhanden sind. Jedoch wird wegen der hohe Komplexität eine hohe Expertise benötigt, was den Cloud-Native Bereich so schwierig macht.
 
 \section{Einsatzgebiete}
