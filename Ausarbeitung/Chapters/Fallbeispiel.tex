@@ -43,7 +43,7 @@ Im nächsten Abschnitt stellen wir die von uns entworfene Architektur vor und er
 \section{Architekturentwurf}
 
 \subsection{Übersicht}
-Wie in Abbildung xx zu sehen ist besteht die Architektur aus einem Client mit graphischer Oberfläche (UI) einem API-Gateway, das alle Anfragen von Clienten empfängt und drei Microservices mit je einer eigenen Datenbank, die die Hauptfunktionalitäten des Systems implementieren.
+Wie in Abbildung \ref{entwurf} zu sehen ist besteht die Architektur aus einem Client mit graphischer Oberfläche (UI) einem API-Gateway, das alle Anfragen von Clienten empfängt und drei Microservices mit je einer eigenen Datenbank, die die Hauptfunktionalitäten des Systems implementieren.
 
 \subsection{Microservices}
 Jede Funktion aus den Anforderungen korrespondiert mit einem Microservice. Die Aufteilung der Microservices ergibt sich aus der Annahme, dass die Funkionalitäten, die sie bereitstellen unterschiedlich oft genutzt werden: Anzahl der Registrierungen < Anzahl Login/Logout < Anzahl der geschriebenen Nachrichten/Abruf von Nachrichten). Daraus gewinnen wir eine individuelle Skalierbarkeit der Funktionen, ohne Redundanz.
@@ -68,6 +68,7 @@ Mithilfe des Clients können Anfragen an das System, genauer gesagt das API-Gate
 	\centering
 	\includegraphics[width=0.6\textwidth]{Graphics/Architekturentwurf.png}
 	\caption{Architekturentwurf}
+	\label{entwurf}
 \end{figure}
 
 \begin{figure}[bth] 
