@@ -6,7 +6,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import AddIcon from '@material-ui/icons/Add';
 import PersonIcon from '@material-ui/icons/Person';
-import {Form, ListGroup} from "react-bootstrap";
+import {Button, Form, ListGroup} from "react-bootstrap";
 import {withRouter} from 'react-router-dom'
 import {Link} from "react-router-dom";
 import {sendMessage} from "./notifications";
@@ -18,8 +18,11 @@ class Message extends React.Component {
         const search = props.location.search;
         const params = new URLSearchParams(search);
         this.state = {
-            token: params.get('token'),
-            user: params.get('user'),
+            token: localStorage.getItem('token'),
+            user: localStorage.getItem('user'),
+            // user: props.location.state.user,
+            // token: props.location.state.sessionToken,
+            // sendMessageRequest: props.location.state.sendMessage,
             messages: [],
             showMessage: false,
             currentBody: '',
@@ -72,6 +75,8 @@ class Message extends React.Component {
         };
         fetch('http://localhost:8300/gateway/logout', requestOptions)
             .then(response => {
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
                 console.log(response);
             }).catch((error) => {
             console.log(error);
@@ -88,16 +93,15 @@ class Message extends React.Component {
     }
 
     render() {
-        const schema = yup.object({
-            message: yup.string().email().required("Bitte eine Nachricht eingeben"),
-            senderEmail: yup.string().email().required("Bitte Empfänger eingeben"),
-        })
+        // const schema = yup.object({
+        //     message: yup.string().email().required("Bitte eine Nachricht eingeben"),
+        //     senderEmail: yup.string().email().required("Bitte Empfänger eingeben"),
+        // })
         console.log(this.state.messages)
         // https://bootstrapious.com/p/bootstrap-chat
         return (
             <div className="Message">
                 <Formik
-                    validationSchema={schema}
                     onSubmit={(values, actions) => {
                         const data = {
                             recipientEmail: this.state.senderEmail === "" ? values.senderEmail : this.state.senderEmail,
@@ -150,7 +154,6 @@ class Message extends React.Component {
                                                     <div className="col-3 mt-1">
                                                         <Link to={'/'}
                                                               onClick={this.logout}><PowerSettingsNewIcon/> Ausloggen</Link>
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -272,12 +275,10 @@ class Message extends React.Component {
                                                     </Form.Group>
                                                 </div>
                                                 <div className="col-1 ">
-                                                    <Form.Group controlId="email">
                                                         <div className="input-group-append">
                                                             <button id="button-addon2" type="submit"
                                                                     className="btn btn-link"><SendIcon/></button>
                                                         </div>
-                                                    </Form.Group>
                                                 </div>
                                             </div>
                                         </div>}

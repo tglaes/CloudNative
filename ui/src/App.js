@@ -15,15 +15,16 @@ class App extends React.Component {
 
     render() {
         return (
-                <div>
-                    <ReactNotification/>
-                    <Router>
-                        <Route exact path="/" render={(props) => <Overview/>}></Route>
-                        <Route path="/message" render={(props) => <Message/>}></Route>
-                    </Router>
+                <div style={{height: '100%', width: '100%'}}>
+                    <div>
+                        <ReactNotification/>
+                        <Router>
+                            <Route path="/message" component={Message}/>
+                            <Route exact path="/" component={Overview}/>
+                        </Router>
+                    </div>
                 </div>
         );
     }
 }
-
 export default App;

@@ -35,8 +35,9 @@ class Login extends React.Component {
                         };
                         fetch('http://localhost:8300/gateway/login', requestOptions)
                             .then(response => response.json().then((text) => {
-                                    that.setState({token: text.message});
-                                    that.props.history.push('/message?token=' + text.message + "&user=" + values.emailLogin);
+                                localStorage.setItem('token', text.message);
+                                localStorage.setItem('user', values.emailLogin);
+                                that.props.history.push('/message')
                                 })
                             )
                             .catch((error) => {
