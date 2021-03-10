@@ -32,11 +32,11 @@ class GatewayHandler implements HttpHandler {
 	 * 
 	 */
 
-	private static HttpClient client = HttpClient.newHttpClient();;
+	private static HttpClient client = HttpClient.newHttpClient();
 	private static String registrationServiceURL = "http://localhost:8200/registration";
 	private static String loginSericeURL = "http://localhost:8000/login/";
 	private static String messageService0URL = "http://localhost:8100/message/";
-	private static String messageService1URL = "http://localhost:8101/message/";
+	//private static String messageService1URL = "http://localhost:8101/message/";
 
 	private static boolean takeMessageService1 = true;
 	
@@ -102,7 +102,8 @@ class GatewayHandler implements HttpHandler {
 			return messageService0URL;
 		} else {
 			takeMessageService1 = true;
-			return messageService1URL;
+			// TODO change
+			return messageService0URL;
 		}
 	}
 	
