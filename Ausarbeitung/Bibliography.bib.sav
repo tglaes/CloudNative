@@ -73,7 +73,7 @@
 }
 
 @Misc{microBild,
-  title = {Was sind Microservices?},
+  title = {M},
   note  = {Bildquelle, (Abruf am 08.01.2021)},
   url   = {https://www.redhat.com/de/topics/microservices/what-are-microservices},
 }

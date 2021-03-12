@@ -72,10 +72,4 @@
   url   = {https://www.docker.com/resources/what-container},
 }
 
-@Misc{microBild,
-  title = {Was sind Microservices?},
-  note  = {Bildquelle, (Abruf am 08.01.2021)},
-  url   = {https://www.redhat.com/de/topics/microservices/what-are-microservices},
-}
-
 @Comment{jabref-meta: databaseType:bibtex;}
