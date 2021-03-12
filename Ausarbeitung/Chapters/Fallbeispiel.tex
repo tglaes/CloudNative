@@ -5,10 +5,10 @@
 Wir haben uns einen Anwendungsfall selbst ausgedacht und dafür eine Architektur entworfen und prototypisch implementiert. In diesem Kapitel stellen wir Anwendungsfall, Architektur und Implementierung vor.
 
 \section{Beschreibung}
-Im Rahmen des Beispiels, haben wir eine Cloud-Native Architekturn für ein Chatprogramm (ChatApp) entworfen. Die Applikation soll drei Funktionen besitzen. Benutzer sollen sich registrieren, ein-und ausloggen und Nachrichten an andere Benutzer schreiben können. Im folgenden sind die funktionalen und nichtfunktionalen Anforderungen aufgeführt.
-
+Im Rahmen des Beispiels, haben wir eine Cloud-Native Architektur für ein Chatprogramm (ChatApp) entworfen. Die Applikation soll drei Funktionen besitzen. Benutzer sollen sich registrieren, ein-und ausloggen und Nachrichten an andere Benutzer schreiben können.
 
 \section{Anforderungen}
+Die Anforderungen sind in nicht-funktionale und funktionale Anforderungen gegliedert, die im folgenden aufgeführt sind.
 \subsection{Nichtfunktionale Anforderungen}
 1. Skalierbarkeit\\
 Das System muss mit einer großen Zahl von Benutzern, die das System gleichzeit verwenden, umgehen können.\\
@@ -32,16 +32,16 @@ Ein Benutzer kann sich mit seiner E-Mail Adresse und seinem Passwort im System a
 3. Nachrichten schreiben/lesen\\
 Ein Benutzer kann Nachrichten an andere Benutzer senden und Nachrichten, die an ihn gesendet worden sind, abrufen.\\
 \\
-Im nächsten Abschnitt stellen wir die von uns entworfene Architektur vor und erläutern die wichtigsten Merkmale. 
-
+In Abbildung \ref{use-case} sind die funktionalen Anforderungen in Form eines Use-Case-Diagramms dargestellt.
 \begin{figure}[bth] 
 	\centering
 	\includegraphics[width=0.6\textwidth]{Graphics/Usecase-Diagramm.png}
-	\caption{Use-Case Diagramm}
-\end{figure}
+	\caption{Use-Case-Diagramm der ChatApp}
+	\label{use-case}
+\end{figure}\\
 
 \section{Architekturentwurf}
-
+Im diesem Abschnitt stellen wir die von uns entworfene Architektur vor und erläutern die wichtigsten Merkmale. 
 \subsection{Übersicht}
 Wie in Abbildung \ref{entwurf} zu sehen ist besteht die Architektur aus einem Client mit graphischer Oberfläche (UI) einem API-Gateway, das alle Anfragen von Clienten empfängt und drei Microservices mit je einer eigenen Datenbank, die die Hauptfunktionalitäten des Systems implementieren.
 
@@ -79,12 +79,13 @@ Mithilfe des Clients können Anfragen an das System, genauer gesagt das API-Gate
 
 \section{Implementierung des Prototyps}
 
-In diesem Kapitel stellen wir unsere prototypische Implementierug vor. Das gesamte System ist in fünf Teile aufgeteilt (UI, API-Gateway, Registration-Microservice, Login-Microservice und Message-Microservice), wobei jeder Teil einem unabhängigem Projekt entspricht, aus welchem jeweils ein eigenständig ausführbares Programm ensteht.
+In diesem Kapitel stellen wir unsere prototypische Implementierung vor. Das gesamte System ist in fünf Teile aufgeteilt (UI, API-Gateway, Registration-Microservice, Login-Microservice und Message-Microservice), wobei jeder Teil einem unabhängigem Projekt entspricht, aus welchem jeweils ein eigenständig ausführbares Programm entsteht.
 Sämtliche Kommunikation wird über das HTTP Protokoll abgewickelt. Die Inhalte der Nachrichten sind dabei im JSON Format.
 
 \subsection{UI}
-TODO
-
+Die Benutzeroberfläche ist eine eigenständige React App. ReactJS ist eine Open-Source-JavaScript Bibliothek mit der Webanwendungen erstellt werden können.\\
+Des Weiteren wurde zu dem HTML und JavaScript verwendet. HTML ist eine Auszeichnungssprache, die zur Strukturierung und Erstellung von Webseiten verwendet wird. JavaScript ist für das Verhalten und Aussehen einer Webseite zuständig.\\
+Der Benutzer interagiert mit der ChatApp, indem er sich z.B. in der ChatApp registriert. Die Eingaben werden anhand von HTTP Requests an das API-Gateway geschickt, das die Daten zur Weiterverarbeitung an den entsprechenden Microservices weiterleitet. Empfange Daten werden ebenfalls von dem API-Gateway an die Benutzeroberfläche gesendet, sodass die ChatApp ausschließlich mit dem API-Gateway kommuniziert.
 
 \subsection{API-Gateway}
 Das API-Gateway ist mit Java und Maven als Build-Management-Tool implementiert. Es stellt eine HTTP Schnittstelle zur Verfügung, an die Nachrichten gesendet werden können, die es dann an die Microservices weiterleitet. Für das Gateway sind die Microservices ebenfalls über HTTP Schnittstellen erreichbar.

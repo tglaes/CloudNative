@@ -81,7 +81,7 @@ class Login extends React.Component {
                                     {errors.passwordLogin}
                                 </Form.Control.Feedback>
                             </Form.Group>
-                            <Button block className="input-size" size="lg" type="submit" style={{marginBottom: "15px"}}>
+                            <Button block className="input-size" size="lg" type="submit" style={{marginBottom: "15px", marginTop: "104px"}}>
                                 Einloggen
                             </Button>
                         </Form>

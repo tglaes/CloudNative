@@ -2,7 +2,7 @@
 % 	   Diskussion     		 =
 %=========================================
 \chapter{Diskussion}
-In diesem Kapitel diskutieren wird die entworfe Architekturn und den dazugehörigen Prototypen.
+In diesem Kapitel diskutieren wird die entworfene Architektur und den dazugehörigen Prototypen.
 
 \section{Vergleich mit Eigenschaften Cloud Nativ}
 In diesem Abschnitt sehen wir uns an, welche Cloud-Native Eigenschaften unsere Architektur erfüllt und welche nicht.\\
@@ -26,10 +26,17 @@ Die Architektur ist nicht für eine globale Ebene geeignet. Es wäre zwar mögli
  Docker, Kubernetes
  
 \section{Tradeoff}
+\label{tradeoff}
 Schon beim Entwurf der Architektur fällt auf, dass der Message-Microservice abhängig vom Login-Microservice ist, da er jede Anfrage authorisieren muss. Skaliert man nun den Message-Mircoservice muss man auch den Login-Microservice hochskalieren, denn ansonsten wird der Login-Microservice zu einem Flaschenhals und man hat keine skalierbares System. Generell wird an der Architektur der Zielkonflikt zwischen Sicherheit und Sklierbarkeit deutlich, da die eingesetzten Sicherheitsmaßnahmen (API-Gateway und Login-Microservice) das System verlangsamen. Jede Anfrage durchläuft eine Sicherheitsüberprüfungen im API-Gateway und muss danach noch von dem jeweiligen Microservice beim Login-Microservice authentifiziert werden.
 
 
 \section{TODO}
-Will sich ein Benutzer registrieren so wird eine Anfrage an den Registration-Microservice generiert, welcher den neuen Benutzer dann anlegt und danach eine Anfrage an den Login-Microservice sendet, damit dort die Kredentialien gespeichert werden. Tritt nun ein Fehler auf nachdem der Benutzer in der Registration-Microservice Datenbank gespeichert wurde, wird kein Eintrag in der Login-Microservice Datenbank erzeugt, sodass der Benutzer registriert ist sich aber nicht einloggen kann. Solch eine Situation ist natürlich zu vermeiden. Es soll an diesem Beispiel deutlich werden, dass nicht nur Orchestierung für Robustheit und Widerstandsfähigkeit verantwortlich sind, sondern auch jeder Microservice muss dafür Sorge tragen. Eine Lösung in unserem Fall wäre nach dem Ausfall des Login-Microservices einen Rollback zu machen und einen Fehler auszugeben. Ein weiterer Lösungansatz ist, eine andere Instanz des Login-Microservices zu verwenden.
+Will sich ein Benutzer registrieren so wird eine Anfrage an den Registration-Microservice generiert, welcher den neuen Benutzer dann anlegt und danach eine Anfrage an den Login-Microservice sendet, damit dort die Kredentialien gespeichert werden. Tritt nun ein Fehler auf nachdem der Benutzer in der Registration-Microservice Datenbank gespeichert wurde, wird kein Eintrag in der Login-Microservice Datenbank erzeugt, sodass der Benutzer registriert ist sich aber nicht einloggen kann. Solch eine Situation ist natürlich zu vermeiden. Es soll an diesem Beispiel deutlich werden, dass nicht nur Orchestrierung für Robustheit und Widerstandsfähigkeit verantwortlich sind, sondern auch jeder Microservice muss dafür Sorge tragen. Eine Lösung in unserem Fall wäre nach dem Ausfall des Login-Microservices einen Rollback zu machen und einen Fehler auszugeben. Ein weiterer Lösungansatz ist, eine andere Instanz des Login-Microservices zu verwenden.\\
+\\
+TODO Security
 
 \section{Erweiterbarkeit}
+Auf Grund der Microservice-Architektur lässt sich die Anwendung gut erweitern. Dies ist der Fall, da die Anwendung aus verschiedenen Microservices besteht, die größtenteils unabhängig mit einander fungieren.\\
+Wie in Abschnitt \ref{tradeoff} beschrieben, muss bei einer Skalierung des Message-Services auch der Login-Service berücksichtigt werden. Was die Erweiterbarkeit in diesem Fall einschränkt.\\
+Die restlichen Microservices wie z.B. das API-Gateway und die Benutzeroberfläche laufen unabhängig von einander. Diese können erweitert werden, ohne die Funktionalität der anderen Services zu beeinträchtigen.
+TODO sonst unabhängig??? TODO
