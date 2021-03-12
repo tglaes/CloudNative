@@ -72,4 +72,16 @@
   url   = {https://www.docker.com/resources/what-container},
 }
 
+@Misc{microBild,
+  title = {Was sind Microservices?},
+  note  = {Bildquelle, (Abruf am 08.01.2021)},
+  url   = {https://www.redhat.com/de/topics/microservices/what-are-microservices},
+}
+
+@Misc{kubernetes,
+  title = {Kubernetes},
+  note  = {(Abruf am 19.01.2021)},
+  url   = {https://kubernetes.io/de/docs/concepts/overview/what-is-kubernetes/ },
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
