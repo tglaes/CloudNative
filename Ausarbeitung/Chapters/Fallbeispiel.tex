@@ -23,8 +23,8 @@ Das System muss Berechtigungen überprüfen können (z.B. darf ein Benutzer die 
 Das System muss es zulassen, dass weitere Komponenten (z.B. Hochladen von Bildern und Videos) einfach hinzugefügt werden können.
 
 \subsection{Funktionale Anforderungen}
-1. Registierung\\
-Ein Benutzer kann sich mit seiner E-Mail Adresse und einem Passwort im System registieren.\\
+1. Registrierung\\
+Ein Benutzer kann sich mit seiner E-Mail Adresse und einem Passwort im System registrieren.\\
 \\
 2. Ein- und Ausloggen\\
 Ein Benutzer kann sich mit seiner E-Mail Adresse und seinem Passwort im System anmelden und danach die Funkionen nutzen bis er sich abmeldet.\\
@@ -38,13 +38,18 @@ In Abbildung \ref{use-case} sind die funktionalen Anforderungen in Form eines Us
 	\includegraphics[width=0.6\textwidth]{Graphics/Usecase-Diagramm.png}
 	\caption{Use-Case-Diagramm der ChatApp}
 	\label{use-case}
-\end{figure}\\
+\end{figure}
 
 \section{Architekturentwurf}
-Im diesem Abschnitt stellen wir die von uns entworfene Architektur vor und erläutern die wichtigsten Merkmale. 
+Im diesem Abschnitt stellen wir die von uns entworfene Architektur vor und erläutern die wichtigsten Merkmale.
 \subsection{Übersicht}
 Wie in Abbildung \ref{entwurf} zu sehen ist besteht die Architektur aus einem Client mit graphischer Oberfläche (UI) einem API-Gateway, das alle Anfragen von Clienten empfängt und drei Microservices mit je einer eigenen Datenbank, die die Hauptfunktionalitäten des Systems implementieren.
-
+\begin{figure}[bth] 
+	\centering
+	\includegraphics[width=0.6\textwidth]{Graphics/Architekturentwurf.png}
+	\caption{Architekturentwurf der ChatApp}
+	\label{entwurf}
+\end{figure}
 \subsection{Microservices}
 Jede Funktion aus den Anforderungen korrespondiert mit einem Microservice. Die Aufteilung der Microservices ergibt sich aus der Annahme, dass die Funkionalitäten, die sie bereitstellen unterschiedlich oft genutzt werden: Anzahl der Registrierungen < Anzahl Login/Logout < Anzahl der geschriebenen Nachrichten/Abruf von Nachrichten). Daraus gewinnen wir eine individuelle Skalierbarkeit der Funktionen, ohne Redundanz.
 
@@ -63,13 +68,6 @@ Des Weiteren erfüllt das API-Gateway die Rolle eines Load-Balancers, der die An
 
 \subsection{Client}
 Mithilfe des Clients können Anfragen an das System, genauer gesagt das API-Gateway, gesendet werden. Er enthält keine Funktionalitäten und dient lediglich zum Abrufen und Darstellen von Inhalten.
-
-\begin{figure}[bth] 
-	\centering
-	\includegraphics[width=0.6\textwidth]{Graphics/Architekturentwurf.png}
-	\caption{Architekturentwurf}
-	\label{entwurf}
-\end{figure}
 
 \begin{figure}[bth] 
 	\centering
