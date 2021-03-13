@@ -79,7 +79,7 @@
 }
 
 @Misc{kubernetes,
-  title = {Kubernetes},
+  title = {Was ist Kubernetes?},
   note  = {(Abruf am 19.01.2021)},
   url   = {https://kubernetes.io/de/docs/concepts/overview/what-is-kubernetes/ },
 }
