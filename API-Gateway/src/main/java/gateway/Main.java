@@ -71,7 +71,7 @@ class GatewayHandler implements HttpHandler {
 				
 				String messageService = getMessageServiceUrl();
 				
-				HttpResponse<String> response = Util.sendHttpPost(client, messageService + "s", body);
+				HttpResponse<String> response = Util.sendHttpPost(client, messageService + "sendMessage", body);
 				Util.writeResponse(request, response.body(), response.statusCode());
 				break;
 			}
