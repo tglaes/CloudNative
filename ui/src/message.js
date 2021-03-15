@@ -213,12 +213,12 @@ class Message extends React.Component {
                                                     className="btn btn-link bg-light"><SendIcon/></button>
                                         </div>
                                     </div>
-                                </div> : <div className="col-7 px-0">
-                                    <div className="px-4 py-5 chat-box bg-white">
+                                </div> : <div className="div-size bg-white col-7 px-0">
+                                    <div className="chat-box bg-white">
 
-                                        <Form.Group controlId="senderEmail">
+                                        <Form.Group className="form-group-size" controlId="senderEmail">
                                             <Form.Control
-                                                className="form-control rounded-0 border-0 py-4 bg-light"
+                                                className="height-form form-control border-0 bg-light"
                                                 type="text"
                                                 aria-describedby="button-addon2"
                                                 placeholder="Empfänger"
@@ -242,7 +242,8 @@ class Message extends React.Component {
                                                     <small
                                                         className="small font-weight-bold">{this.state.time}</small>
                                                 </div>
-                                            </div> : <div></div>}
+                                            </div>
+                                        : <div></div>}
 
                                     </div>
 
