@@ -66,20 +66,18 @@ Die Schnittstelle des Message-Microservices umfasst das Senden einer Nachricht u
 Das API-Gateway schottet die Microservices ab. Das bedeutet, dass alle Anfragen vom Clienten nur an das API-Gateway gesendet werden und niemals direkt an die Microservices. Das Gateway leitet dann die Anfrage an den entsprechenden Mircoservice weiter und sendet dessen Antwort wieder an den Clienten. Die Abschottung hat mehrere Vorteile. Sicherheitsrelevante Aspekte wie z.B. DDOS-Protection oder der Schutz vor unbefugtem Zugriff (von Adressen, die nicht zum Client gehören) können auf das API-Gateway verlagert werden und müssen daher nicht in jedem Microservice implementiert werden.
 Des Weiteren erfüllt das API-Gateway die Rolle eines Load-Balancers, der die Anfragen auf verschiedene Instanzen von Microservices verteilt. 
 
-\subsection{Client}
+\subsection{Client (UI)}
 Mithilfe des Clients können Anfragen an das System, genauer gesagt das API-Gateway, gesendet werden. Er enthält keine Funktionalitäten und dient lediglich zum Abrufen und Darstellen von Inhalten.
-
-\begin{figure}[bth] 
-	\centering
-	\includegraphics[width=0.6\textwidth]{Graphics/Sequenzdiagramm.png}
-	\caption{Sequenzdiagramm}
-\end{figure}
 
 \begin{figure}[bth] 
 	\centering
 	\includegraphics[width=1\textwidth]{Graphics/test2.png}
 	\caption{Sequenzdiagramm}
 \end{figure}
+
+\subsection{Verbindungen zwischen Komponenten}
+In Abbildung xx sind die drei wichtigsten Abläufe in einem Sequenzdiagramm festgehalten. Dargestellt sind die Registrierung, die Anmeldung und das Senden einer Nachricht. Es dient zum Verständis der Zusammenhänge der einzelnen Komponenten.
+
 
 \section{Implementierung des Prototyps}
 
