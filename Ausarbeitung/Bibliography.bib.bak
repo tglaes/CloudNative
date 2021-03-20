@@ -61,27 +61,33 @@
 }
 
 @Misc{microservice,
+  author  = {Amazon Web Service},
   title   = {Microservices},
+  year    = {2021},
   url     = {https://aws.amazon.com/de/microservices/},
-  urldate = {2021-01-08},
+  urldate = {2021-02-08},
 }
 
 @Misc{container,
+  author  = {Docker},
   title   = {What is a Container?},
   url     = {https://www.docker.com/resources/what-container},
-  urldate = {2021-01-09},
+  urldate = {2021-02-09},
 }
 
 @Misc{microBild,
-  title   = {Was sind Microservices?},
+  author  = {Red Hat Limited},
+  title   = {Was sind Microservices?. (Bildquelle)},
   url     = {https://www.redhat.com/de/topics/microservices/what-are-microservices},
   urldate = {2021-01-08},
 }
 
 @Misc{kubernetes,
-  title = {Was ist Kubernetes?},
-  note  = {(Abruf am 19.01.2021)},
-  url   = {https://kubernetes.io/de/docs/concepts/overview/what-is-kubernetes/ },
+  author  = {The Kubernetes Authors},
+  title   = {Was ist Kubernetes?},
+  year    = {2021},
+  url     = {https://kubernetes.io/de/docs/concepts/overview/what-is-kubernetes/ },
+  urldate = {2021-02-19},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
