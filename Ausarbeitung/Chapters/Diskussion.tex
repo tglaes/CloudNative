@@ -23,9 +23,9 @@ Diese Eigenschaft ist erfüllt. Einerseits ist ein Authorisierungsmechanismus mi
 Die Architektur ist nicht für eine globale Ebene geeignet. Es wäre zwar möglich die Anwendung mehrfach zu installieren, jedoch würden diese Installationen keine Daten teilen. Um dies zu bewerkstelligen müsste man auf verteilte Datenbanken bauen.
 
 \section{Microservices}
- Docker, Kubernetes
- Robustheit
- Widerstandsfähigkeit
+Eine Möglichkeit den Prototyp zu erweitern, ist der Einsatz des Open-Source-Containerformats Docker. Dadurch wird die Anwendung  bzw. die Microservices mit seinen Abhängigkeiten und alles was zur Ausführung benötigt wird, mit Hilfe von Docker in Container verpackt. Somit bietet sich dadurch die Möglichkeit, dass die Anwendung in jeder Umgebung schnell bereitgestellt und skaliert werden könnte.\\
+Auch der Einsatz von Kubernetes wäre mit zunehmender Größe und Komplexität der Betreibung der Anwendung sinnvoll. Denn Kubernetes würde z.B. die Verwaltung und Platzierung der Container automatisieren.\\
+Durch den Einsatz der Containerformate steigt dann auch die Widerstandsfähigkeit und Robustheit der Anwendung. Denn diese würde durch die Orchestrierungssysteme überwacht werden und bei Ausfällen oder Fehlern neu gestartet werden.
  
  \section{TODO}
  Will sich ein Benutzer registrieren so wird eine Anfrage an den Registration-Microservice generiert, welcher den neuen Benutzer dann anlegt und danach eine Anfrage an den Login-Microservice sendet, damit dort die Kredentialien gespeichert werden. Tritt nun ein Fehler auf nachdem der Benutzer in der Registration-Microservice Datenbank gespeichert wurde, wird kein Eintrag in der Login-Microservice Datenbank erzeugt, sodass der Benutzer registriert ist sich aber nicht einloggen kann. Solch eine Situation ist natürlich zu vermeiden. Es soll an diesem Beispiel deutlich werden, dass nicht nur Orchestrierung für Robustheit und Widerstandsfähigkeit verantwortlich sind, sondern auch jeder Microservice muss dafür Sorge tragen. Eine Lösung in unserem Fall wäre nach dem Ausfall des Login-Microservices einen Rollback zu machen und einen Fehler auszugeben. Ein weiterer Lösungsansatz ist, eine andere Instanz des Login-Microservices zu verwenden.
@@ -39,4 +39,3 @@ Schon beim Entwurf der Architektur fällt auf, dass der Message-Microservice abh
 Auf Grund der Microservice-Architektur lässt sich die Anwendung gut erweitern. Dies ist der Fall, da die Anwendung aus verschiedenen Microservices besteht, die größtenteils unabhängig mit einander fungieren.\\
 Wie in Abschnitt \ref{tradeoff} beschrieben, muss bei einer Skalierung des Message-Services auch der Login-Service berücksichtigt werden. Was die Erweiterbarkeit in diesem Fall einschränkt.\\
 Die restlichen Microservices wie z.B. das API-Gateway und die Benutzeroberfläche laufen unabhängig von einander. Diese können erweitert werden, ohne die Funktionalität der anderen Services zu beeinträchtigen.
-TODO sonst unabhängig??? TODO
