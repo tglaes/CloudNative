@@ -3,7 +3,7 @@
 %=========================================
 \chapter{Cloud-Native}
 
-In zweiten Kapitel gehen wir auf die Definition von Cloud-Native Architekturen ein, grenzen sie von anderen Absätzen ab und betrachten wichtige Eigenschaften. Abschließend beschäftigen wir uns mit den Vor-und Nachteilen und den typischen Einsatzgebieten.
+Im zweiten Kapitel gehen wir auf die Definition von Cloud-Native Architekturen ein, grenzen diese von anderen Absätzen ab und betrachten wichtige Eigenschaften. Abschließend beschäftigen wir uns mit den Vor-und Nachteilen und den typischen Einsatzgebieten.
 
 \section{Cloud Computing}
 Bevor wir uns mit Cloud-Native Architekturen auseinandersetzten können, müssen wir uns zuerst mit dem Cloud Computing beschäftigen, da es die Basis für diese Architekturen bildet und sie maßgeblich beeinflusst. Die NIST Definition von Cloud Computing enthält die wichtigsten Merkmalen.\\
@@ -13,7 +13,7 @@ Cloud computing is a model for enabling ubiquitous, convenient, on-demand networ
 Entscheidend für Cloud-Native ist nun die schnelle Bereitstellung von Ressourcen, denn dies eröffnet neue Möglichkeiten hinsichtlich der Skalierbarkeit und hat dadurch einen starken Einfluss auf die Architekturen.
 
 \section{Definition Cloud Native}
-Was genau Cloud-Native ist und wie man es definieren kann ist schwierig, da der Begriff noch relativ neu ist. Eine erste Version einer Definition kommt von der Cloud-Native Computing Foundation, einer Organisation, die als Vorreiter in Sachen Cloud-Native gilt.\\
+Was genau Cloud-Native ist und wie man es definieren kann ist schwierig, da der Begriff noch relativ neu ist. Eine erste Version einer Definition kommt von der Cloud Native Computing Foundation, einer Organisation, die als Vorreiter in Sachen Cloud-Native gilt.\\
 \\
 \textbf{CNCF Cloud Native Definition v1.0}\\
 \\
@@ -82,16 +82,16 @@ Im Gegensatz zu Container, sind virtuelle Maschinen eine Virtualisierung der ges
 Bei einer virtuellen Maschine ermöglicht der Hypervisor die Ausführung mehrerer virtuellen Maschinen auf einer einzigen Maschine. Jede virtuelle Maschine enthält eine vollständige Kopie eines Betriebssystems, der Anwendung, notwendiger Binärdateien und Bibliotheken. In Abbildung \ref{vm} sind drei Gastbetriebssysteme zu sehen, die alle von ihrem Hypervisor kontrolliert werden. Jedes System benötigt seine eigenen CPU- und Speicherressourcen sowie seine eigene Kopie verschiedener Binärdateien und Bibliotheken. Dadurch benötigen virtuelle Maschinen im Vergleich zu containerbasierten Anwendungen mehr Speicher.
 
 \section{Eigenschaften}
-Als nächstes betrachten wir die häufigst genannten Eigenschaften von Cloud-Native Architekturen.\\
+Als nächstes betrachten wir die am häufigsten genannten Eigenschaften von Cloud-Native Architekturen.\\
 \\
 \textbf{1. Globale Ebene}\\
-Cloud-Native Architekturen sind oft für eine globale Ebene ausgelegt. Das impliziert z.B., dass das System mehrfach installiert werden muss und den Einsatz von verteilten Datenbanken.\\
+Cloud-Native Architekturen sind oft für eine globale Ebene ausgelegt. Das impliziert z.B., dass das System mehrfach installiert werden muss und verteilte Datenbanken zum Einsatz kommen.\\
 \\
 \textbf{2. Skalierbarkeit}\\
-Die entstehenden Architekturen sind skalierbar und können eine sehr große Menge von Benutzern unterstützen. Dies ist besonders in Kombination mit der globalen Ebene, wenn man Sychronisation und Konsistenz betrachtet, eine große Herausforderung.\\
+Die entstehenden Architekturen sind skalierbar und können mit sehr großen Mengen von Benutzern und Daten umgehen. Dies ist besonders in Kombination mit der globalen Ebene, wenn man Sychronisation und Konsistenz betrachtet, eine große Herausforderung.\\
 \\
 \textbf{3. Annahme über Infrastruktur}\\
-Die Annahme \glqq infrastructure is fluid\grqq{}, im Deutschen etwa Infrastruktur ist ständig änderbar, bedeutet, dass die unterliegenden Strukturen nicht konstant sind, wie sie es vergleichsweise bei einem Server sind, der eine bestimmte Anzahl von CPUs hat. So können z.B. Recheneinheiten (CPUs) hinzukommen oder wegfallen. Diese Annahme resultiert aus der Verwendung von Cloud-Technologien und bildet die Basis für das Entwerfen von skalierbaren Architekturen.\\
+Die Annahme \glqq infrastructure is fluid\grqq{}, im Deutschen etwa Infrastruktur ist ständig änderbar, bedeutet, dass die unterliegenden Strukturen nicht konstant sind, wie sie es vergleichsweise bei einem Server sind, der eine bestimmte Anzahl von CPUs hat. So können z.B. Recheneinheiten (CPUs) hinzukommen oder wegfallen. Diese Annahme resultiert aus der Verwendung von Cloud-Technologien und bildet die Basis für das Entwerfen von skalierbaren Cloud Architekturen.\\
 Die zweite Annahme, dass Fehler konstant auftreten, ergibt sich ebenfalls aus der Verwendung von Cloud-Technologien, denn wenn eine große Anzahl von Hard- und Softwarekomponenten verwendet werden steigt die Wahrscheinlichkeit von einem unerwarteten Ausfall. Die Architektur muss also die Möglichkeit von solchen Fehlern miteinbeziehen, denn anders ist sie nicht widerstandsfähig genug, um effektiv in einer Cloud-Umgebung zu bestehen.\\
 \\
 \textbf{4 Updates und Tests verlaufen unscheinbar}\\
@@ -126,7 +126,7 @@ Jede Cloud-Native Applikation ist ein verteiltes System, welche an sich schon se
 Abschließend ist zu sagen, dass die hohe Komplexität aus den hohen Anforderungen (Skalierbarkeit, Erreichbarkeit, Sicherheit, etc.) stammt, die an Cloud-Native Architekturen gestellt werden und daher unvermeidbar ist. Die Komplexität ist ein Tradeoff, der bei Cloud-Native Architekturen eingegangen wird, da diese in einem Zielkonflikt mit anderen Anforderungen steht, d.h. je höher die Ansprüche desto komplexer gestaltet sich die Architektur.\\
 \\
 \textbf{2. Neuer Ansatz/Technologie}\\
-Die Cloud Native Computing Foundation treibt den Bereich Cloud-Native stark voran, dennoch ist es ein relativ neuer Ansatz. Ständig werden neue Innovationen gemacht und bestehende Tools erweitert. Dies bedeutet, dass z.B. Fachliteratur und Erfahrene Entwickler kaum vorhanden sind. Jedoch wird wegen der hohe Komplexität eine hohe Expertise benötigt, was den Cloud-Native Bereich so schwierig macht.
+Die Cloud Native Computing Foundation treibt den Bereich Cloud-Native stark voran, dennoch ist es ein relativ neuer Ansatz. Ständig werden neue Innovationen gemacht und bestehende Tools erweitert. Dies bedeutet, dass z.B. Fachliteratur und erfahrene Entwickler kaum vorhanden sind. Jedoch wird wegen der hohe Komplexität eine hohe Expertise benötigt, was den Cloud-Native Bereich so schwierig macht.
 
 \section{Einsatzgebiete}
 Cloud-Native Architekturen werden derzeit meistens für Systeme benutzt, die entweder mit vielen Daten und/oder mit einer großen Anzahl von Benutzern umgehen müssen. Also generell Systeme, die ein hohes Maß an Skalierbarkeit fordern. Besonders in den Bereichen Streaming und Big Data werden häufig Cloud-Native Architekturen verwendet. 
