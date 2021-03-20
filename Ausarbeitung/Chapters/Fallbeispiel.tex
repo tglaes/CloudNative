@@ -51,7 +51,7 @@ Wie in Abbildung \ref{entwurf} zu sehen ist besteht die Architektur aus einem Cl
 	\label{entwurf}
 \end{figure}
 \subsection{Microservices}
-Jede Funktion aus den Anforderungen korrespondiert mit einem Microservice. Die Aufteilung der Microservices ergibt sich aus der Annahme, dass die Funktionalitäten, die sie bereitstellen unterschiedlich oft genutzt werden: Anzahl der Registrierungen < Anzahl Login/Logout < Anzahl der geschriebenen Nachrichten/Abruf von Nachrichten). Daraus gewinnen wir eine individuelle Skalierbarkeit der Funktionen, ohne Redundanz.
+Jede Funktion aus den Anforderungen korrespondiert mit einem Microservice. Die Aufteilung der Microservices ergibt sich aus der Annahme, dass die Funktionalitäten, die sie bereitstellen unterschiedlich oft genutzt werden: Anzahl der Registrierungen < Anzahl Login/Logout < Anzahl der geschriebenen Nachrichten/Abruf von Nachrichten. Daraus gewinnen wir eine individuelle Skalierbarkeit der Funktionen, ohne Redundanz.
 
 \subsection{Registration-Microservice}
 Über den Registration-Microservice kann sich ein Benutzer registrieren. Dazu stellt er eine Schnittstelle zur Verfügung an die man eine Nachricht mit E-Mail, Passwort und Land senden kann. Beim Eintreffen einer neuen Nachricht wird ein neuer Eintrag in seiner Datenbank generiert. Des Weiteren wird eine Nachricht an den Login-Service gesendet, mit der Anfrage, auch hier den neuen Benutzer anzulegen.
@@ -73,10 +73,11 @@ Mithilfe des Clients können Anfragen an das System, genauer gesagt das API-Gate
 	\centering
 	\includegraphics[width=1\textwidth]{Graphics/test2.png}
 	\caption{Sequenzdiagramm}
+	\label{sequenz}
 \end{figure}
 
 \subsection{Verbindungen zwischen Komponenten}
-In Abbildung xx sind die drei wichtigsten Abläufe in einem Sequenzdiagramm festgehalten. Dargestellt sind die Registrierung, die Anmeldung und das Senden einer Nachricht. Es dient zum Verständis der Zusammenhänge der einzelnen Komponenten.
+In Abbildung \ref{sequenz} sind die drei wichtigsten Abläufe in einem Sequenzdiagramm festgehalten. Dargestellt sind die Registrierung, die Anmeldung und das Senden einer Nachricht. Es dient zum Verständis der Zusammenhänge der einzelnen Komponenten.
 
 
 \section{Implementierung des Prototyps}
