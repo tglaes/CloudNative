@@ -85,9 +85,9 @@ In diesem Kapitel stellen wir unsere prototypische Implementierung vor. Das gesa
 Sämtliche Kommunikation wird über das HTTP Protokoll abgewickelt. Die Inhalte der Nachrichten sind dabei im \ac{JSON} Format.
 
 \subsection{UI}
-Die Benutzeroberfläche ist eine eigenständige React App. ReactJS ist eine Open-Source-JavaScript Bibliothek mit der Webanwendungen erstellt werden können.\\
-Des Weiteren wurde zu dem HTML und JavaScript verwendet. HTML ist eine Auszeichnungssprache, die zur Strukturierung und Erstellung von Webseiten verwendet wird. JavaScript ist für das Verhalten und Aussehen einer Webseite zuständig.\\
-Der Benutzer interagiert mit der ChatApp, indem er sich z.B. in der ChatApp registriert. Die Eingaben werden anhand von HTTP Requests an das API-Gateway geschickt, das die Daten zur Weiterverarbeitung an den entsprechenden Microservices weiterleitet. Empfange Daten werden ebenfalls von dem API-Gateway an die Benutzeroberfläche gesendet, sodass die ChatApp ausschließlich mit dem API-Gateway kommuniziert.
+Die Benutzeroberfläche ist eine eigenständige React App. ReactJS ist eine Open-Source-JavaScript Bibliothek mit welcher Webanwendungen erstellt werden können.\\
+Des Weiteren wurden HTML und JavaScript verwendet. HTML ist eine Auszeichnungssprache, die zur Strukturierung und Erstellung von Webseiten verwendet wird. JavaScript ist für das Verhalten und Aussehen einer Webseite zuständig.\\
+Der Benutzer interagiert mit der ChatApp, indem er sich z.B. registriert. Die Eingaben werden anhand von HTTP Requests an das API-Gateway geschickt, welches die Daten zur Weiterverarbeitung an den entsprechenden Microservice weiterleitet. Empfangene Daten werden ebenfalls von dem API-Gateway an die Benutzeroberfläche gesendet, sodass die ChatApp ausschließlich mit dem API-Gateway kommuniziert.
 
 \subsection{API-Gateway}
 Das API-Gateway ist mit Java und Maven als Build-Management-Tool implementiert. Es stellt eine HTTP Schnittstelle zur Verfügung, an die Nachrichten gesendet werden können, die es dann an die Microservices weiterleitet. Für das Gateway sind die Microservices ebenfalls über HTTP Schnittstellen erreichbar.

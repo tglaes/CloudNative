@@ -23,7 +23,7 @@ Diese Eigenschaft ist erfüllt. Einerseits ist ein Autorisierungsmechanismus mit
 Die Architektur ist nicht für eine globale Ebene geeignet. Es wäre zwar möglich die Anwendung mehrfach zu installieren, jedoch würden diese Installationen keine Daten teilen. Um dies zu bewerkstelligen müsste man auf verteilte Datenbanken bauen.
 
 \section{Microservices}
-Eine Möglichkeit den Prototyp zu erweitern, ist der Einsatz des Open-Source-Containerformats Docker. Dadurch wird die Anwendung  bzw. die Microservices mit seinen Abhängigkeiten und alles was zur Ausführung benötigt wird, mit Hilfe von Docker in Container verpackt. Somit bietet sich dadurch die Möglichkeit, dass die Anwendung in jeder Umgebung schnell bereitgestellt und skaliert werden könnte.\\
+Eine Möglichkeit den Prototyp zu erweitern, ist der Einsatz des Open-Source-Containerformats Docker. Dadurch wird die Anwendung bzw. die Microservices mit Hilfe von Docker in Container verpackt. Somit bietet sich die Möglichkeit, dass die Anwendung in jeder Umgebung schnell bereitgestellt und skaliert werden könnte.\\
 Auch der Einsatz von Kubernetes wäre mit zunehmender Größe und Komplexität der Betreibung der Anwendung sinnvoll. Denn Kubernetes würde z.B. die Verwaltung und Platzierung der Container automatisieren.\\
 Durch den Einsatz der Containerformate steigt dann auch die Widerstandsfähigkeit und Robustheit der Anwendung. Denn diese würde durch die Orchestrierungssysteme überwacht werden und bei Ausfällen oder Fehlern neu gestartet werden.
  
@@ -36,6 +36,6 @@ Schon beim Entwurf der Architektur fällt auf, dass der Message-Microservice abh
 
 
 \section{Erweiterbarkeit}
-Auf Grund der Microservice-Architektur lässt sich die Anwendung gut erweitern. Dies ist der Fall, da die Anwendung aus verschiedenen Microservices besteht, die größtenteils unabhängig mit einander fungieren.\\
-Wie in Abschnitt \ref{tradeoff} beschrieben, muss bei einer Skalierung des Message-Services auch der Login-Service berücksichtigt werden. Was die Erweiterbarkeit in diesem Fall einschränkt.\\
-Die restlichen Microservices wie z.B. das API-Gateway und die Benutzeroberfläche laufen unabhängig von einander. Diese können erweitert werden, ohne die Funktionalität der anderen Services zu beeinträchtigen.
+Auf Grund der Microservice-Architektur lässt sich die Anwendung gut erweitern, da sie aus verschiedenen Microservices besteht, die größtenteils unabhängig miteinander fungieren.\\
+Wie in Abschnitt \ref{tradeoff} beschrieben, muss bei einer Skalierung des Message-Services auch der Login-Service berücksichtigt werden, was die Erweiterbarkeit in diesem Fall einschränkt.\\
+Die restlichen Microservices wie z.B. das API-Gateway und die Benutzeroberfläche laufen unabhängig voneinander. Diese können erweitert werden, ohne die Funktionalität der anderen Services zu beeinträchtigen.
