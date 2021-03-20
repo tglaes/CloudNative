@@ -13,11 +13,12 @@ import com.google.gson.Gson;
 
 public class MessageDatabase {
 
-	private static String databaseFileName = "messageDatabase.json";
+	public static String databasePath = null;
+	private static String databaseResource = "messageDatabase.json";
 	
 	public static Message[] getMessagesForUser(String email) throws IOException{
 		
-		InputStream is = MessageDatabase.class.getClassLoader().getResourceAsStream(databaseFileName);
+		InputStream is = MessageDatabase.class.getClassLoader().getResourceAsStream(databaseResource);
 		String databaseContent = new String(is.readAllBytes());
 		is.close();
 		
@@ -29,7 +30,7 @@ public class MessageDatabase {
 	public static void addMessage(Message m) throws IOException {
 		m.setMessageTime(new Date());
 		
-		InputStream is = MessageDatabase.class.getClassLoader().getResourceAsStream(databaseFileName);
+		InputStream is = MessageDatabase.class.getClassLoader().getResourceAsStream(databaseResource);
 		String databaseContent = new String(is.readAllBytes());
 		is.close();
 		Message[] resultMessages = new Gson().fromJson(databaseContent, Message[].class);
@@ -38,7 +39,7 @@ public class MessageDatabase {
 		mess.add(m);
 		resultMessages = mess.toArray(new Message[0]);
 		
-		BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\Tristan Glaes\\CloudNative\\MessageService\\src\\main\\resources\\messageDatabase.json"));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(databasePath));
 	    writer.write(new Gson().toJson(resultMessages));    
 	    writer.close();		
 	}

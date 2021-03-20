@@ -23,6 +23,9 @@ public class Main {
 	public static void main(String[] args) throws IOException {	
 		int portOffset = Integer.parseInt(args[0]);
 		
+		String databasePath = args[1];
+		MessageDatabase.databasePath = databasePath;
+		
 		server = HttpServer.create(new InetSocketAddress(8100 + portOffset), 0);
 		server.createContext("/message", new MessageHandler());
 		server.setExecutor(null);
