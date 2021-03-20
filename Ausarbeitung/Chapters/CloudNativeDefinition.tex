@@ -10,23 +10,23 @@ Bevor wir uns mit Cloud-Native Architekturen auseinandersetzten können, müssen
 \\
 Cloud computing is a model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources (e.g., networks, servers, storage, applications, and services) that can be rapidly provisioned and released with minimal management effort or service provider interaction. This cloud model is composed of five essential characteristics, three service models, and four deployment models.\\
 \\
-Entscheidend für Cloud-Native ist nun die schnelle Bereitstellung von Resourcen, denn dies eröffnet neue Möglichkeiten hinsichitlich der Skalierbarkeit und hat dadurch einen starken Einfluss auf die Architekturen.
+Entscheidend für Cloud-Native ist nun die schnelle Bereitstellung von Ressourcen, denn dies eröffnet neue Möglichkeiten hinsichtlich der Skalierbarkeit und hat dadurch einen starken Einfluss auf die Architekturen.
 
 \section{Definition Cloud Native}
 Was genau Cloud-Native ist und wie man es definieren kann ist schwierig, da der Begriff noch relativ neu ist. Eine erste Version einer Definition kommt von der Cloud-Native Computing Foundation, einer Organisation, die als Vorreiter in Sachen Cloud-Native gilt.\\
 \\
 \textbf{CNCF Cloud Native Definition v1.0}\\
 \\
-Cloud native Technologien ermöglichen es Unternehmen, skalierbare Anwendungen in modernen, dynamischen Umgebungen zu implementieren und zu betreiben. Dies können öffentliche, private und Hybrid-Clouds sein. Best Practices, wie Container, Service-Meshs, Microservices, immutable Infrastruktur und deklarative APIs, unterstützen diesen Ansatz.
+Cloud-Native Technologien ermöglichen es Unternehmen, skalierbare Anwendungen in modernen, dynamischen Umgebungen zu implementieren und zu betreiben. Dies können öffentliche, private und Hybrid-Clouds sein. Best Practices, wie Container, Service-Meshs, Microservices, immutable Infrastruktur und deklarative \ac{API}, unterstützen diesen Ansatz.
 \\
 Die zugrundeliegenden Techniken ermöglichen die Umsetzung von entkoppelten Systemen, die belastbar, handhabbar und beobachtbar sind. Kombiniert mit einer robusten Automatisierung können Softwareentwickler mit geringem Aufwand flexibel und schnell auf Änderungen reagieren.
 \\
 Die Cloud Native Computing Foundation fördert die Akzeptanz dieser Paradigmen durch die Ausgestaltung eines Open Source Ökosystems aus herstellerneutralen Projekten. Wir demokratisieren modernste und innovative Softwareentwicklungs-Patterns, um diese Innovationen für alle zugänglich zu machen.\\
 \\
-Diese Definition lässt gewollt viel Spielraum zur Interpretation, jedoch stechen ein paar wichtige Merkmale heraus. Diese sind inbesondere Entkopplung, Belastbarkeit, robuste Automatisierung und Skalierbarkeit. Die Cloud Native Computing Foundation hat diese Defintion als Version 1.0 makiert, was darauf schließen lässt, das Änderungen oder Erweiterungen erwartet werden.
+Diese Definition lässt gewollt viel Spielraum zur Interpretation, jedoch stechen ein paar wichtige Merkmale heraus. Diese sind insbesondere Entkopplung, Belastbarkeit, robuste Automatisierung und Skalierbarkeit. Die Cloud Native Computing Foundation hat diese Definition als Version 1.0 markiert, was darauf schließen lässt, das Änderungen oder Erweiterungen erwartet werden.
 
 \section{Microservices}
-Microservices sind in Cloud-Native Systemen zum Erstellen von Anwendungen ein beliebter Architekturstil. Bei dieser Architektur besteht die Software aus kleinen, unabhängigen Services bzw. Modulen, die über definierte APIs (application programming interface) kommunizieren. Jeder Service kann unabhängig von anderen Services entwickelt und bereitgestellt werden, ohne die Funktionalität anderer Services zu beeinträchtigen. Den Aufbau der Microservice-Architektur sowie die Darstellung der einzelnen unabhängigen Services sind in Abbildung \ref{micro} zu sehen.\\
+Microservices sind in Cloud-Native Systemen zum Erstellen von Anwendungen ein beliebter Architekturstil. Bei dieser Architektur besteht die Software aus kleinen, unabhängigen Services bzw. Modulen, die über definierte API kommunizieren. Jeder Service kann unabhängig von anderen Services entwickelt und bereitgestellt werden, ohne die Funktionalität anderer Services zu beeinträchtigen. Den Aufbau der Microservice-Architektur sowie die Darstellung der einzelnen unabhängigen Services sind in Abbildung \ref{micro} zu sehen.\\
 \begin{figure}[bth] 
 	\centering
 	\includegraphics[width=0.6\textwidth]{Graphics/Microservice.png}
@@ -51,17 +51,18 @@ Ein Container ist eine Standard-Software-Einheit, die den Code und seine Abhäng
 Im Gegensatz zu virtuelle Maschinen wird bei der Containerisierung weniger Speicherplatz benötigt. Hierbei handelt es sich um eine Virtualisierung auf Betriebssystemebene, da die Container direkt auf dem Kernel des Betriebssystems ausgeführt werden. Container teilen sich den Kernel des Betriebssystems, sodass sie schneller starten und im Vergleich zu einem vollständigen Betriebssystem nur einen Bruchteil an Speicher verwenden.\\
 Container haben eine hohe Portabilität, sodass sie überall ausgeführt werden können. Die Softwarepakete enthalten alle Elemente, die zur Ausführung in einer beliebigen Umgebung erforderlich sind.\\
 Auch bei der Containerisierung ist die Skalierbarkeit eine wichtige Eigenschaft. Denn hier besteht die Möglichkeit, dass die einzelnen Container je nach Ressourcenbedarf schnell gestartet sowie angehalten werden können. Zudem laufen sie isoliert von anderen Anwendungen.\cite{container}\\
-\\                                                                                   Es gibt verschiedene Containerformate, mit deren Hilfe eine Anwendungsbereitstellung durch Containerisierung erleichtert wird. Bekannte Containerformate sind z.B. Docker und Kubernetes.\\
+\\                                                                                   
+Es gibt verschiedene Containerformate, mit deren Hilfe eine Anwendungsbereitstellung durch Containerisierung erleichtert wird. Bekannte Containerformate sind z.B. Docker und Kubernetes.\\
 Docker ist ein beliebtes Open-Source-Containerformat zur Automatisierung der Bereitstellung von Anwendungen, die z.B. in der Cloud ausgeführt werden können. Docker verpackt die Software mit seinen Abhängigkeiten und alles was zur Ausführung benötigt wird in Container.\\
 Wenn Anwendungen immer größer werden und die Betreibung immer komplexer wird, ist das Orchestierungssystem Kubernetes hilfreich.\\
 Kubernetes ist ein Open-Source-Orchestrierungssystem zur Automatisierung z.B. zur Verwaltung, Platzierung und Skalierung von Container.\cite{kubernetes}
                    
 \section{Abgrenzungen}
-In diesem Abschnitt wird die Monolithische Architektur im Gegensatz zur Microservices Architektur abgegrenzt. Darüber hinaus werden virtuelle Maschinen einer containerbasierten Anwendung gegenübergestellt.
+In diesem Abschnitt wird die Monolithische Architektur im Gegensatz zur Microservice Architektur abgegrenzt. Darüber hinaus werden virtuelle Maschinen einer containerbasierten Anwendung gegenübergestellt.
 
 \subsection{Monolithische Architektur}
 Bei einer monolithischen Architektur sind die Prozesse eng miteinander verbunden und werden als einziger Service ausgeführt. Wenn ein Fehler auftritt, muss im Gegensatz zu der Microservice Architektur, die gesamte Anwendung skaliert werden und nicht nur der betreffende Service. Das Hinzufügen und Verbessern von Funktionen sowie das Umsetzen neuer Konzepte kann bei der monolithischen Architektur je nach Aufbau der Implementierung mit zunehmender Codebasis komplexer werden. Die Anwendungsverfügbarkeit ist im Gegensatz zu den Micorservices risikoreicher. Bei der monolithischen Architektur sind die einzelne Prozesse abhängig voneinander und eng miteinander verbunden, sodass die Wahrscheinlichkeit für einen Prozessausfall erhöht wird.\\
-In Abbildung \ref{mono} sind die Aufbauten der monolithischen Architektur und der Microservice Architektur vergleichend dargestellt.
+In Abbildung \ref{mono} sind die beschriebenen Aufbauten der monolithischen Architektur und der Microservice Architektur vergleichend dargestellt.
 \begin{figure}[bth] 
 	\centering
 	\includegraphics[width=0.9\textwidth]{Graphics/monoVsMicro.png}
@@ -74,11 +75,11 @@ Im Gegensatz zu Container, sind virtuelle Maschinen eine Virtualisierung der ges
 \begin{figure}[bth] 
 	\centering
 	\includegraphics[width=0.9\textwidth]{Graphics/containerVsVm.png}
-	\caption{}
+	\caption{Vergleich einer containerbasierten Anwendung zu einer virtuellen Maschine}
 	\label{vm}
 	\cite{container}
 \end{figure}\\
-Der Hypervisor ermöglicht die Ausführung mehrerer virtuellen Maschinen auf einer einzigen Maschine. Jede virtuelle Maschine enthält eine vollständige Kopie eines Betriebssystems, der Anwendung, notwendiger Binärdateien und Bibliotheken. In Abbildung \ref{vm} sind drei Gastbetriebssysteme zu sehen, die alle von ihrem Hypervisor kontrolliert werden. Jedes System benötigt seine eigenen CPU- und Speicherressourcen sowie seine eigene Kopie verschiedener Binärdateien und Bibliotheken. Dadurch benötigen virtuelle Maschinen im Vergleich zu containerbasierten Anwendungen mehr Speicher.
+Bei einer virtuellen Maschine ermöglicht der Hypervisor die Ausführung mehrerer virtuellen Maschinen auf einer einzigen Maschine. Jede virtuelle Maschine enthält eine vollständige Kopie eines Betriebssystems, der Anwendung, notwendiger Binärdateien und Bibliotheken. In Abbildung \ref{vm} sind drei Gastbetriebssysteme zu sehen, die alle von ihrem Hypervisor kontrolliert werden. Jedes System benötigt seine eigenen CPU- und Speicherressourcen sowie seine eigene Kopie verschiedener Binärdateien und Bibliotheken. Dadurch benötigen virtuelle Maschinen im Vergleich zu containerbasierten Anwendungen mehr Speicher.
 
 \section{Eigenschaften}
 Als nächstes betrachten wir die häufigst genannten Eigenschaften von Cloud-Native Architekturen.\\
@@ -94,7 +95,7 @@ Die Annahme \glqq infrastructure is fluid\grqq{}, im Deutschen etwa Infrastruktu
 Die zweite Annahme, dass Fehler konstant auftreten, ergibt sich ebenfalls aus der Verwendung von Cloud-Technologien, denn wenn eine große Anzahl von Hard- und Softwarekomponenten verwendet werden steigt die Wahrscheinlichkeit von einem unerwarteten Ausfall. Die Architektur muss also die Möglichkeit von solchen Fehlern miteinbeziehen, denn anders ist sie nicht widerstandsfähig genug, um effektiv in einer Cloud-Umgebung zu bestehen.\\
 \\
 \textbf{4 Updates und Tests verlaufen unscheinbar}\\
-Die Architekturen sind so entworfen, dass Systeme, ohne Verlust von Verfügbarkeit, geupdatet und getestet werden können. Techniken, die hier zum Einsatz kommen sind unter Anderem CI/CD Pipelines, die den Prozess von Entwicklung bis Installation automatisieren und Immutable Infrastructures ein Ansatz, bei dem bestehende Systeme nicht verändert werden und stattdessen eine neuere Version auf einem neuem System neu installiert wird.\\
+Die Architekturen sind so entworfen, dass Systeme, ohne Verlust von Verfügbarkeit, upgedatet und getestet werden können. Techniken, die hier zum Einsatz kommen sind unter Anderem CI/CD Pipelines, die den Prozess von Entwicklung bis Installation automatisieren und Immutable Infrastructures ein Ansatz, bei dem bestehende Systeme nicht verändert werden und stattdessen eine neuere Version auf einem neuem System neu installiert wird.\\
 \\
 \textbf{5. Sicherheit}\\
 Sicherheit spielt eine wichtige Rolle in Cloud-Native Architekturen. Die meisten Systeme bestehen aus vielen Komponenten, was eine breite Angriffsfläche bietet. Außerdem ist Autorisierung und Authentifizierung keine einfache Sache in einem entkoppelten verteilten System. Deshalb sollte Sicherheit schon beim Entwurf der Architektur eine Rolle spielen.
@@ -129,5 +130,5 @@ Die Cloud Native Computing Foundation treibt den Bereich Cloud-Native stark vora
 
 \section{Einsatzgebiete}
 Cloud-Native Architekturen werden derzeit meistens für Systeme benutzt, die entweder mit vielen Daten und/oder mit einer großen Anzahl von Benutzern umgehen müssen. Also generell Systeme, die ein hohes Maß an Skalierbarkeit fordern. Besonders in den Bereichen Streaming und Big Data werden häufig Cloud-Native Architekturen verwendet. 
-Beispiele sind der Streaming-Dienst von Netflix sowie Produktivitätsprodukte von Goolge. Mittlerweile werden auch Cloud-Plattformen Angeboten (Google Cloud Platform und AWS), die es wiederum ermöglichen Cloud-Native Applikation zu entwickeln.
+Beispiele sind der Streaming-Dienst von Netflix sowie Produktivitätsprodukte von Google. Mittlerweile werden auch Cloud-Plattformen Angeboten (Google Cloud Platform und AWS), die es wiederum ermöglichen Cloud-Native Applikation zu entwickeln.
 Anzumerken ist, dass viele Unternehmen eine Migration ihrer Dienste in die Cloud vorgenommen haben, da die Möglichkeiten für Cloud basierte Systeme erst im letzten Jahrzehnt wirklich zu einer Option wurde.
