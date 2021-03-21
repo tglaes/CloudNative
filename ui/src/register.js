@@ -2,7 +2,7 @@ import React from "react";
 import "./index.css"
 import {Button, Form} from "react-bootstrap";
 import {Formik} from "formik";
-import {registrationSuccess} from "./notifications";
+import {registrationSuccess} from "./util/notifications";
 import * as yup from 'yup';
 
 class Register extends React.Component {
@@ -32,10 +32,10 @@ class Register extends React.Component {
                                 country: values.country
                             })
                         };
+                        //POST-Request zum Registrieren eines Users
                         fetch('http://localhost:8300/gateway/registration', requestOptions)
                             .then(response => {
                                 registrationSuccess();
-                                console.log(response);
                             }).catch((error) => {
                             console.log(error);
                         });

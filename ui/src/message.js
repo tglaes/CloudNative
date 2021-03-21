@@ -9,7 +9,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import {Form, ListGroup} from "react-bootstrap";
 import {withRouter} from 'react-router-dom'
 import {Link} from "react-router-dom";
-import {sendMessage} from "./notifications";
+import {sendMessage} from "./util/notifications";
 import * as yup from "yup";
 
 class Message extends React.Component {
@@ -29,11 +29,16 @@ class Message extends React.Component {
         this.getMessage();
     }
 
+    /**
+     * Lifecycle Methode: wird ausgeführt nachdem die Komponente in das DOM gerendert wurde
+     */
     componentDidMount() {
-        console.log(this.state.token);
         this.getMessage();
     }
 
+    /**
+     * Methode, die die empfangenen Nachrichten eines Users erhält
+     */
     getMessage() {
         let that = this;
         const requestOptions = {
@@ -44,15 +49,16 @@ class Message extends React.Component {
         fetch('http://localhost:8300/gateway/getMessages', requestOptions)
             .then(response => response.json().then((text) => {
                     that.setState({messages: text.message})
-                    console.log(this.state.messages);
                 })
             ).catch((error) => {
             console.log(error);
         });
     }
 
+    /**
+     * Methode, die die Items einer Nachricht den State-Variaben zuordnet
+     */
     showMessageItem(item) {
-        console.log(item);
         this.setState({
             showNewTemplate: false,
             showMessage: true,
@@ -63,6 +69,9 @@ class Message extends React.Component {
         })
     }
 
+    /**
+     * Methode, die den User ausloggt
+     */
     logout = () => {
         const requestOptions = {
             method: 'POST',
@@ -73,12 +82,14 @@ class Message extends React.Component {
             .then(response => {
                 localStorage.removeItem('token');
                 localStorage.removeItem('user');
-                console.log(response);
             }).catch((error) => {
             console.log(error);
         });
     }
 
+    /**
+     * Methode, die ein leeres Mail-Template anzeigt
+     */
     addEmptyTemplate = () => {
         this.setState({
             showNewTemplate: true,
@@ -93,8 +104,6 @@ class Message extends React.Component {
             message: yup.string().required("Bitte eine Nachricht eingeben"),
             senderEmail: yup.string().email().required("Bitte Empfänger eingeben"),
         })
-        console.log(this.state.messages)
-        // https://bootstrapious.com/p/bootstrap-chat
         return (
             <Formik
                 validationSchema={schema}
@@ -106,16 +115,14 @@ class Message extends React.Component {
                         token: this.state.token,
                     };
 
-                    console.log(data)
-
                     const requestOptions = {
                         method: 'POST',
                         headers: {'Content-Type': 'text/plain'},
                         body: JSON.stringify(data)
                     };
+                    //POST-Request zum Senden von Nachrchten
                     fetch('http://localhost:8300/gateway/sendMessage', requestOptions)
                         .then(response => {
-                            console.log(response);
                             sendMessage();
                         }).catch((error) => {
                         console.log(error);

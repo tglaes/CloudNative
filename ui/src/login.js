@@ -33,6 +33,7 @@ class Login extends React.Component {
                                 password: values.passwordLogin,
                             })
                         };
+                        //POST-Request zum Einloggen eines Users
                         fetch('http://localhost:8300/gateway/login', requestOptions)
                             .then(response => response.json().then((text) => {
                                 localStorage.setItem('token', text.message);
