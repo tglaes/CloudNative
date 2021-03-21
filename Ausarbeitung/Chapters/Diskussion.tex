@@ -40,4 +40,5 @@ Schon beim Entwurf der Architektur fällt auf, dass der Message-Microservice abh
 \section{Erweiterbarkeit}
 Auf Grund der Microservice-Architektur lässt sich die Anwendung gut erweitern, da sie aus verschiedenen Microservices besteht, die größtenteils unabhängig miteinander fungieren.\\
 Wie in Abschnitt \ref{tradeoff} beschrieben, muss bei einer Skalierung des Message-Services auch der Login-Service berücksichtigt werden, was die Erweiterbarkeit in diesem Fall einschränkt.\\
-Die restlichen Microservices wie z.B. das API-Gateway und die Benutzeroberfläche laufen unabhängig voneinander. Diese können erweitert werden, ohne die Funktionalität der anderen Services zu beeinträchtigen.
+Die restlichen Microservices wie z.B. das API-Gateway und die Benutzeroberfläche laufen unabhängig voneinander. Diese können erweitert werden, ohne die Funktionalität der anderen Services zu beeinträchtigen.\\
+Die Microservice-Architektur ermöglicht auch das Hinzufügen neuer Microservices, ohne die Funktionalität der anderen Services zu beeinträchtigen.

@@ -63,7 +63,6 @@
 @Misc{microservice,
   author  = {Amazon Web Service},
   title   = {Microservices},
-  year    = {2021},
   url     = {https://aws.amazon.com/de/microservices/},
   urldate = {2021-02-08},
 }
@@ -85,12 +84,11 @@
 @Misc{kubernetes,
   author  = {The Kubernetes Authors},
   title   = {Was ist Kubernetes?},
-  year    = {2021},
   url     = {https://kubernetes.io/de/docs/concepts/overview/what-is-kubernetes/ },
   urldate = {2021-02-19},
 }
 
-@Misc{cloud-Native Applications,
+@Misc{cloud-NativeApplications,
   author  = {Dennis Gannon, Roger Barga, Neel Sundaresan},
   title   = {Cloud-Native Applications},
   year    = {2017},
