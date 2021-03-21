@@ -17,6 +17,7 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 
+		// Set parameters and start the server
 		server = HttpServer.create(new InetSocketAddress(8200), 0);
 		server.createContext("/registration", new RegistrationHandler());
 		server.setExecutor(null);
@@ -36,9 +37,11 @@ class RegistrationHandler implements HttpHandler {
 
 			String body = new String(message.getRequestBody().readAllBytes());
 			
+			// Debug log
 			System.out.println("URI=" + message.getRequestURI().toString());
 			System.out.println("BODY=" + body);
 			
+			// Parse message payload from JSON to Java object
 			Registration r = new Gson().fromJson(body, Registration.class);
 
 			if (r == null) {

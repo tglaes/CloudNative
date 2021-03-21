@@ -20,12 +20,18 @@ public class Main {
 
 	private static HttpServer server;
 
-	public static void main(String[] args) throws IOException {	
+	/**
+	 * 
+	 * @param args You need to provide a port offset 0 or 1 and the path to the messageDatabase.json file
+	 * @throws IOException
+	 */
+	public static void main(String[] args) throws IOException {
 		int portOffset = Integer.parseInt(args[0]);
 		
 		String databasePath = args[1];
 		MessageDatabase.databasePath = databasePath;
 		
+		// Set parameters and start the server
 		server = HttpServer.create(new InetSocketAddress(8100 + portOffset), 0);
 		server.createContext("/message", new MessageHandler());
 		server.setExecutor(null);
@@ -43,12 +49,14 @@ class MessageHandler implements HttpHandler {
 
 		String body = new String(request.getRequestBody().readAllBytes());
 
+		// Debug log
 		System.out.println("URI=" + request.getRequestURI().toString());
 		System.out.println("BODY=" + body);
 
 		switch (request.getRequestURI().toString()) {
 		case "/message/sendMessage": {
 
+			// Parse payload from JSON to Java object
 			SendMessage sm = new Gson().fromJson(body, SendMessage.class);
 
 			if (sm == null) {
@@ -56,6 +64,7 @@ class MessageHandler implements HttpHandler {
 				return;
 			}
 
+			// Send a request to the login microservice to authorize the user
 			HttpResponse<String> response = sendHttpPost(client, loginSericeURL + "checkToken", sm.getToken());
 
 			if (response.body().equals("Token invalid")) {
@@ -68,6 +77,7 @@ class MessageHandler implements HttpHandler {
 		}
 		case "/message/getMessages": {
 
+			// Parse payload from JSON to Java object
 			GetMessages gm = new Gson().fromJson(body, GetMessages.class);
 
 			if (gm == null) {
@@ -75,11 +85,13 @@ class MessageHandler implements HttpHandler {
 				return;
 			}
 
+			// Send a request to the login microservice to authorize the user
 			HttpResponse<String> response = sendHttpPost(client, loginSericeURL + "checkToken", gm.getToken());
 			if (response.body().equals("Token invalid")) {
 				writeResponse(request, response.body(), response.statusCode());
 			} else {
 
+				// Get all messages for the user from the database
 				Message[] messages = MessageDatabase.getMessagesForUser(response.body());
 				writeResponse(request, new Gson().toJson(messages), 200);
 			}

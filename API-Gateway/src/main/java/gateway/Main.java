@@ -16,6 +16,7 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 
+		// Set the server parameters and start it
 		server = HttpServer.create(new InetSocketAddress(8300), 0);
 		server.createContext("/gateway", new GatewayHandler());
 		server.setExecutor(null);
@@ -25,13 +26,6 @@ public class Main {
 
 class GatewayHandler implements HttpHandler {
 
-	/*
-	 * 
-	 * /gateway/registration /gateway/login /gateway/logout /gateway/sendMessage
-	 * /gateway/getMessages
-	 * 
-	 */
-
 	private static HttpClient client = HttpClient.newHttpClient();
 	private static String registrationServiceURL = "http://localhost:8200/registration";
 	private static String loginSericeURL = "http://localhost:8000/login/";
@@ -40,16 +34,25 @@ class GatewayHandler implements HttpHandler {
 
 	private static boolean takeMessageService1 = true;
 	
+	
+	/**
+	 * Fowards request from the client to the microservices
+	 * 
+	 * @param request The request from the client
+	 */
 	@Override
 	public void handle(HttpExchange request) throws IOException {
 
 		doSecurityCheck(request);
 		
 		try {
-			System.out.println("URL:" + request.getRequestURI().toString());
 			String body = new String(request.getRequestBody().readAllBytes());
+			
+			// Debug log
+			System.out.println("URL:" + request.getRequestURI().toString());			
 			System.out.println("Body: " + body);
 
+					
 			switch (request.getRequestURI().toString()) {
 			case "/gateway/registration": {
 
@@ -95,6 +98,7 @@ class GatewayHandler implements HttpHandler {
 		}
 	}
 	
+	// Alternately chooses the URL for the message microservice used for the next request
 	synchronized String getMessageServiceUrl() {
 		
 		if (takeMessageService1) {

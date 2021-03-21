@@ -15,6 +15,7 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 
+		// Set the parameters and start the server
 		server = HttpServer.create(new InetSocketAddress(8000), 0);
 		server.createContext("/login", new LoginHandler());
 		server.setExecutor(null);
@@ -28,26 +29,33 @@ class LoginHandler implements HttpHandler {
 	public void handle(HttpExchange t) throws IOException {
 
 		String body = new String(t.getRequestBody().readAllBytes());
-		
+
+		// Debug log
 		System.out.println("URI=" + t.getRequestURI().toString());
 		System.out.println("BODY=" + body);
-		
+
 		switch (t.getRequestURI().toString()) {
 		case "/login/createnNewLogin": {
 
+			// Parse the JSON payload to Java object
 			Login l = new Gson().fromJson(body, Login.class);
-			LoginDatabase.createNewLogin(l);
-
-			writeResponse(t, "ok", 200);
-
+			if (l == null) {
+				returnError(t, "Could not recognize message format");
+			} else {
+				// Write to database
+				LoginDatabase.createNewLogin(l);
+				// Send response
+				writeResponse(t, "ok", 200);
+			}
 			break;
 		}
 		case "/login/checkLogin": {
-			
+
+			// Parse the JSON payload to Java object
 			Login l = new Gson().fromJson(body, Login.class);
 
 			if (l == null) {
-				returnError(t, "No Login data provided");
+				returnError(t, "Could not recognize message format");
 			} else {
 				String token = LoginDatabase.createNewSessionToken(l);
 				if (token != null) {
@@ -62,24 +70,24 @@ class LoginHandler implements HttpHandler {
 
 			String token = body;
 
-			if(token == null || token.isEmpty()) {
+			if (token == null || token.isEmpty()) {
 				writeResponse(t, "Token cannot be null or empty", 200);
 			} else {
 				String result = LoginDatabase.destroySessionToken(token);
 				writeResponse(t, result, 200);
-			}		
+			}
 			break;
 		}
 		case "/login/checkToken": {
 
 			String token = body;
 
-			if(token == null || token.isEmpty()) {
+			if (token == null || token.isEmpty()) {
 				writeResponse(t, "Token cannot be null or empty", 200);
 			} else {
 				String result = LoginDatabase.checkToken(token);
 				writeResponse(t, result, 200);
-			}		
+			}
 			break;
 		}
 		default:
